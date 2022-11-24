@@ -1,0 +1,25 @@
+.tabHeader{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+justify-content: flex-start;
+margin: 0 auto;
+}
+.tabHeader > div{
+    margin: 10px 10px;
+}
+
+@media screen and (max-width:600px) {
+    .tabHeader{
+        width: 90%;
+
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .tabHeader > div{
+        margin: 10px 10px;
+        border-bottom: 1px solid black;
+    }
+    
+}

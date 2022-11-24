@@ -1,0 +1,18 @@
+.dateButton{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    width: 200px;
+    /* height: 40px; */
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .dateButton{
+        width: auto;
+        font-size: 12px;
+        margin:20px auto;
+        padding: 10px 10px;
+    }
+}
