@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar";
 import PlayerTag from "../../components/room/common/PlayerTag";
 import Timer from "../../components/room/common/Timer";
 import styles from "../../styles/Room.module.css";
+import { withRouter } from 'next/router'
 interface Props {
   spectating: boolean;
   roomId: string;
@@ -18,7 +19,7 @@ const Room: FC = () => {
   const { roomId } = router.query;
   const spectating = Object(roomId)[1] === "2";
   const goBack = () => {
-    router.back();
+    router.push('/game');
   };
   return (
     <div>
@@ -35,7 +36,7 @@ const Room: FC = () => {
         />
       </Head>
       <main className={styles.body}>
-        <Navbar />
+        <Navbar locaction="room" />
         <div className={styles.board}>
           <div
             className="w-full flex lg:flex-row  text-center justify-between lg:align-top"
@@ -81,4 +82,4 @@ const Room: FC = () => {
   );
 };
 
-export default Room;
+export default withRouter(Room);

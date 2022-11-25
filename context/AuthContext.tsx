@@ -38,10 +38,7 @@ export const AuthProvider = ({ children }: Props) => {
 	});
 
 	useEffect(() => {
-		// const unsub =	onAuthStateChanged(auth, (user) => {
-		// 	dispatch({type: "AUTH_READY", payload: user});
-		// 	unsub();
-		// });
+
 	}, []);
 	console.log("Auth user?", state);
 

@@ -19,9 +19,16 @@ interface Props {
   available: boolean;
 }
 const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
+   try{ const i = localStorage.getItem('games');
+    const c = i && JSON.parse(i);
+    console.log("local store games", c);
+}catch(ee){
+    console.log(" eere",ee)
+}
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
   useEffect(() => {
+    if(games && games.length > 0 ){
     const filteredAvail = games?.filter((game) => {
       return game.ended == false;
     });
@@ -31,9 +38,10 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
     });
 
     setEndedGames(filteredUnavail);
+}
   }, [games]);
   return (
-    <div className="lg:px-10 px-2">
+    <div className="lg:px-10 px-2 h-400px overflow-scroll">
       <div className="w-full flex flex-col lg:flex-row ">
         <div className="w-full pt-10  grid grid-cols-5 lg:gap-0.5 text-sm  lg:w-4/6">
           {available
@@ -66,7 +74,7 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
             return (
               <div
                 key={game.id}
-                className="w-full flex my-5 flex-col border-b-light-gret border-b-1 pb-4 lg:flex-row "
+                className="w-full flex my-5 flex-col border-b-mt-grey border-b-1 pb-4 lg:flex-row "
               >
                 <div className="w-full  grid grid-cols-5 gap-x-0.5 lg:gap-0.5 lg:p-1 lg:w-4/6">
                   <div>{game.id}</div>
@@ -84,14 +92,14 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
                     <LoungeButton
                       enabled
                       type="enter"
-                      onClick={goto(game.id, "join")}
+                      onClick={goto(game.id, "1")}
                     />
                   </Link>
                   <Link href={`/room/${game.id}/2`}>
                     <LoungeButton
                       enabled
                       type="spectate"
-                      onClick={goto(game.id, "spectate")}
+                      onClick={goto(game.id, "2")}
                     />
                   </Link>
                 </div>

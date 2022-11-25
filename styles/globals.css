@@ -1,9 +1,10 @@
 @font-face {
-  font-family: "Gilroy";
-  src: url("../assets/fonts/Gilroy-ExtraBold.otf");
-  src: url("../assets/fonts//Gilroy-Light.otf");
-  font-weight: 400;
-  font-style: normal;
+  font-family: 'Gilroy';
+  src: local('Gilroy-Regular'), url(../assets/fonts/Gilroy/Gilroy-Light.otf) format('truetype');
+}
+@font-face {
+  font-family: 'Gilroy-Bold';
+  src: local('Gilroy-extrabold'), url(../assets/fonts/Gilroy/Gilroy-ExtraBold.otf) format('truetype');
 }
 html,
 body {
@@ -11,7 +12,7 @@ body {
   color: black;
   margin: 0;
   font-family: "Gilroy", Helvetica Neue, sans-serif;
-  background: url("../assets/svg/chess-board.svg") #EBEBEB;
+  background: url("../assets/svg/chess-board.svg") #EBEBEB ;
 
   background-position: center;
   background-repeat: repeat;
@@ -22,7 +23,7 @@ body {
   box-sizing: border-box;
 }
 h3{
-  font-family: "Gilroy" !important;
+  font-family: "Gilroy-Bold" !important;
   font-weight: 800 !important;
 }
 .border-b-1 {
@@ -35,10 +36,7 @@ h3{
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
-  } */
-/* body {
-    color: white;
-  }
+  } 
 } */
 
 .black-items {

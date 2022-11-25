@@ -6,7 +6,8 @@ justify-content: flex-start;
 margin: 0 auto;
 }
 .tabHeader > div{
-    padding: 10px 10px 2px 0;
+    padding: 10px 20px 12px 0;
+    margin-right: 10px;
 
 }
 

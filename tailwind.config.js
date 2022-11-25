@@ -33,7 +33,7 @@ module.exports = {
         '640px': '640px',
       },
       fontFamily: {
-        lato: ['Lato'],
+        Gilroy: ['Gilroy'],
       },
     },
     colors: {

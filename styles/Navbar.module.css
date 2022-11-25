@@ -7,6 +7,7 @@ justify-content: space-between;
 align-items: center;
 border-bottom: 1px solid #EBEBEB;
 margin-bottom: 50px;
+
 /* background: #e5e5e5; */
 }
 .head{
@@ -73,13 +74,4 @@ background: white;
    .balance, .address{
 padding: 4px;
     }
-}
-
-@media (prefers-color-scheme: dark) {
-/* .head{
-    color: white;
-}
-.head-room{
-    color: white;
-} */
 }
