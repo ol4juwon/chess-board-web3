@@ -14,9 +14,11 @@ module.exports = {
     },
     extend: {
       width: {
+        '320px': '320px',
         '400px': '400px',
         '500px': '500px',
         '550px': '550px',
+        '640px': '640px',
         '750px': '750px',
         '700px': '700px',
         '900px': '900px',
@@ -25,16 +27,27 @@ module.exports = {
         1100: '1100px',
       },
       height: {
+        '320px': '320px',
+        '400px': '400px',
         '500px': '500px',
+        '640px': '640px',
       },
       fontFamily: {
         lato: ['Lato'],
       },
     },
     colors: {
+      'primary-btn': '#438FFE',
+      'primary-grey': '#4E4D4B',
       'mt-grey': '#e5e5e5',
       'light-pink': '#f8cccc',
+      'accent-grey': '#bfbfbf',
       'light-blue': '#f0f7fc',
+      'light-gret': '#d3d3d3',
+      'text-bron': '#B58863',
+      'off-bron': '#F0D9B5',
+      'player-tag': '#383531',
+      colors
     },
   },
   variants: {

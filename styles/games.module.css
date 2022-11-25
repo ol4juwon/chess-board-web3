@@ -1,14 +1,22 @@
 .tabHeader{
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
 justify-content: flex-start;
 margin: 0 auto;
 }
 .tabHeader > div{
-    margin: 10px 10px;
+    padding: 10px 10px 2px 0;
+
 }
 
+.blur-2{
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+}
+.bg-mofa{
+    background:red;
+}
 @media screen and (max-width:600px) {
     .tabHeader{
         width: 90%;
@@ -18,8 +26,7 @@ margin: 0 auto;
         
     }
     .tabHeader > div{
-        margin: 10px 10px;
-        border-bottom: 1px solid black;
+        margin: 10px 10px 0 10px;
     }
-    
+
 }

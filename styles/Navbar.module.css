@@ -1,10 +1,13 @@
 .nav{
-    width: 100%;
+    width: 90%;
 display: flex;
-padding: 30px 130px;
+margin: 0 auto;
+padding: 30px 0 15px 0;
 justify-content: space-between;
 align-items: center;
-background: #e5e5e5;
+border-bottom: 1px solid #EBEBEB;
+margin-bottom: 50px;
+/* background: #e5e5e5; */
 }
 .head{
     font-size: 18px;
@@ -13,7 +16,7 @@ background: #e5e5e5;
     display: none;
 }
 .balance{
-    width: 50%;
+width: 50%;
 height: 100%;
 display: flex;
 align-items: center;
@@ -23,8 +26,8 @@ color: white;
 background: #438FFE;
 }
 .account{
-    width: 200px;
-    height: 60px;
+    width: 180px;
+    height: 40px;
     border-radius: 10px;
     display: flex;
 }
@@ -41,7 +44,7 @@ background: white;
 @media screen and (max-width: 640px) {
 
     .nav{
-        padding: 10px;
+        padding: 10px 15px;
         justify-content: space-between;
     }
     ._navButton{
@@ -62,9 +65,21 @@ background: white;
         background: #438FFE;
     } */
 .account{ 
-    display: none;
+    /* display: none; */
+    width: 100px;
+    height: 40px;
+    font-size: 10px;
 }
-    .address{
-
+   .balance, .address{
+padding: 4px;
     }
+}
+
+@media (prefers-color-scheme: dark) {
+/* .head{
+    color: white;
+}
+.head-room{
+    color: white;
+} */
 }

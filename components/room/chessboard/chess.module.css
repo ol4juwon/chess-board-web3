@@ -1,0 +1,73 @@
+
+.black {
+    float: left;
+    width: 80px;
+    height: 80px;
+    background-color: #B58863;
+      font-size:50px;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+}
+.white {
+    float: left;
+    width: 80px;
+    height: 80px;
+    background-color: #F0D9B5;
+    font-size:50px;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+}
+.white > div{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid red; */
+}
+.black > div {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.chesss{
+width: 640px;
+height:640px;
+border: 2px solid #333333;
+}
+@media screen and (max-width: 600px) {
+    .board{
+       flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        color: white;
+    }
+    .nameTile{
+        width: 100%;
+display: flex;
+flex-direction: row;
+    }
+    .chesss{
+        width: 320px;
+        margin: 0 auto;
+    }
+    .black {
+        width: 40px;
+        height: 40px;
+        font-size:20px;
+        text-align:center;
+        display: table-cell;
+        vertical-align:middle;
+    }
+    .white {
+        float: left;
+        width: 40px;
+        height: 40px;
+        font-size:20px;
+        text-align:center;
+        display: table-cell;
+        vertical-align:middle;
+    }
+
+}

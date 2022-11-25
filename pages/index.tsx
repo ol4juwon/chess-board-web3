@@ -2,9 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import styles from '../styles/Home.module.css'
+
 import styled from 'styled-components';
 import SignInButton from '../components/SignInButton';
-import Container from '../components/Container';
+import Container from '../components/game/Container';
 // const Container = styled.div`
 // width: 80%;
 // max-width: 860px;
@@ -36,6 +37,8 @@ export default function Home() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" 
         crossOrigin="anonymous" referrerPolicy="no-referrer" />
+        <link rel='stylesheet' href='../styles/Home.css' />
+        <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
       </Head>
     
       <main className={styles.main}>
