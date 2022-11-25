@@ -41,9 +41,9 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
 }
   }, [games]);
   return (
-    <div className="lg:px-10 px-2 h-400px overflow-scroll">
+    <div className="lg:px-10 px-2">
       <div className="w-full flex flex-col lg:flex-row ">
-        <div className="w-full pt-10  grid grid-cols-5 lg:gap-0.5 text-sm  lg:w-4/6">
+        <div className="w-full pt-10 static  grid grid-cols-5 lg:gap-0.5 text-sm  lg:w-4/6">
           {available
             ? availGames &&
               availGames.length > 0 && (
@@ -68,6 +68,7 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
         </div>
         <div className="w-full hidden lg:hidden bg-light-pink p-2 lg:w-2/6"></div>
       </div>
+      <div className="h-260px lg:h-400px overflow-scroll">
       {available ? (
         availGames && availGames.length > 0 ? (
           availGames.map((game) => {
@@ -107,7 +108,7 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
             );
           })
         ) : (
-          <div className="w-full flex flex-col justify-center items-center h-320px">
+          <div className="w-full flex flex-col justify-center items-center h-auto lg:h-320px">
             <i className="fas fa-chess-board font-extrabold text-9xl "></i>
             <p className="lg:text-2xl text-xl text-center">
               No Available Chess Games yet. Create one to get started
@@ -157,7 +158,7 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
             No Completed Chess Games yet
           </p>
         </div>
-      )}
+      )}</div>
     </div>
   );
 };
