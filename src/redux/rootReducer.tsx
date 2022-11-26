@@ -1,18 +1,18 @@
-import { combineReducers } from 'redux';
+import { AnyAction, combineReducers, Reducer } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from './reducers/authReducers';
 import gameReducer from './reducers/gameReducers';
+// enableMapSet();
 
-const persistConfig = {
-  key: 'root',
-  storage
-};
 
-export const rootReducer = combineReducers({
+const combinedReducers = combineReducers({
   user: authReducer,
   game: gameReducer,
 });
-
-export default persistReducer(persistConfig, rootReducer);
+const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
+    return combinedReducers(state, action);
+  };
+export type RootState = ReturnType<typeof combinedReducers>;
+export default rootReducer;

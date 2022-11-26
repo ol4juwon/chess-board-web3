@@ -1,80 +1,23 @@
-import * as types from '../types/auth';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../types";
 
-const initialState = {
-  isAuthenticated: false,
-  isLoading: false,
-  user: null
+const initialState: User = {
+ address: '',
+ balance: 0
 };
 
-const authReducer = (state = initialState, action: { type:any; payload:any }) => {
-  switch (action.type) {
-    case types.GET_USER_DETAILS_REQUEST:
-      return {
-        ...state,
-        isAuthenticated: true,
-        isLoading: true
-      };
+const authStateSlice = createSlice({
+  name: "auth state",
+  initialState,
+  reducers: {
+    resetUser(){
+    },
+    setUser(state, action: PayloadAction<any>) {
+      const user = action.payload;
+      return {...state,  address: user.address, balance:user.balance};
+    },
+  },
+});
 
-    case types.USER_LOADED:
-      return {
-        ...state,
-        isAuthenticated: true,
-        isLoading: false,
-        user: action.payload
-      };
-
-    case types.SIGN_UP_REQUEST:
-      console.log("sign ",action.payload)
-      return {
-        ...state,
-        isAuthenticated: false,
-        isLoading: true,
-        user: action.payload
-      };
-    case types.GET_USER_DETAILS_SUCCESS:
-    case types.SIGN_IN_SUCCESS:
-      // localStorage.setItem("token", action.payload?.user?.accessToken);
-      return {
-        ...state,
-        user: action.payload,
-        isAuthenticated: true,
-        isLoading: false
-      };
-    case types.GET_USER_DETAILS_ERROR:
-      return {
-        ...state,
-        isAuthenticated: false,
-        isLoading: false
-      };
-
-    case types.SIGN_IN_ERROR:
-    case types.LOGOUT_SUCCESS:
-      console.log('loguout/failed register', action.type, action.payload);
-      localStorage.clear();
-      return {
-        ...state,
-        user: null,
-        isAuthenticated: false,
-        isLoading: false,
-        error: action.payload?.message
-      };
-    case types.SIGN_UP_ERROR:
-      return {
-        ...state,
-        user: null,
-        isAuthenticated: false,
-        isLoading: false,
-        error: action.payload
-      };
-    case types.UPDATE_USER:
-      return {
-        ...state,
-        user: action.payload,
-        isLoading: false
-      };
-    default:
-      return state;
-  }
-};
-
-export default authReducer;
+export const { resetUser, setUser } = authStateSlice.actions;
+export default authStateSlice.reducer;

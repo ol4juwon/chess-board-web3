@@ -5,12 +5,13 @@ import { Icon } from "@iconify/react";
 import chessPawn from "@iconify/icons-noto/chess-pawn";
 import { useSelector } from 'react-redux';
 import Link from "next/link";
+import { RootState } from "../redux/rootReducer";
 interface Props {
   locaction?: any;
 }
 const Navbar: FC<Props> = ({ locaction }: Props) => {
-  const [navbar, setNavbar] = useState(false);
-  const user = useSelector((state:any) => state.auth);
+  const user = useSelector((state:RootState) => state.user);
+  console.log("-->",user)
   const isIndex = locaction === 'index';
   const isRoom = locaction === 'room';
   return (
@@ -89,13 +90,13 @@ const Navbar: FC<Props> = ({ locaction }: Props) => {
      
       {
         !isIndex &&  (<div className={styles.account}>
-        <div className={styles.balance}> {user?.balance || 0 } ETH</div>
+        <div className={styles.balance}> {user?.balance  } ETH</div>
         <div
           className={`w-1/2 ${
             locaction ? "bg-primary-grey text-colors-white" : "bg-colors-white"
           } rounded-r-md text-center flex items-center justify-center `}
         >
-          {user?.user?.address ? `${user?.user?.address.substr(0,6)}...` : 'Unk'}
+          {user?.address ? `${user.address.substring(0,6)}...` : 'Unk'}
         </div>
       </div>)
       }

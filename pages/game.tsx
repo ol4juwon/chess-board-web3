@@ -3,26 +3,30 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import CreateRoom from "../src/components/game/createButton/CreateRoom";
 import DateButton from "../src/components/game/dateButton/DateButton";
-import GameTables, { Games } from "../src/components/GameTables";
+import GameTables from "../src/components/GameTables";
 import Navbar from "../src/components/Navbar";
 import styles from "../src/styles/games.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addGame } from "../src/redux/actions/game";
 import CreateGameModal from "../src/components/game/CreateGameModal";
+import { addgame } from "../src/redux/reducers/gameReducers";
+import { RootState } from "../src/redux/rootReducer";
 // type AddGameType = {
 //   currency: string;
 //   entryFee: number;
 //   privacy: string;
 // };
 const Game = () => {
-  const game = useSelector((state: any) => state.games.games);
+  const game = useSelector((state:RootState) => state.game.games);
   const router = useRouter();
-  const user = useSelector((state:any) => state.auth);
+  const user = useSelector((state:RootState) => state.user);
   useEffect(() => {
-    if (!user?.isAuthenticated) {
-      router.back();
+    if (user.address === '' || !user.address) {
+
+        
+      router.push('/');
     }
-  }, );
+  },[] );
+  
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -48,8 +52,8 @@ const Game = () => {
         privacy,
         created_on: creta,
       };
-      const payload = [...game, data];
-      dispatch(addGame(payload));
+
+      dispatch(addgame(data));
     } catch (error) {
       console.log("error", error);
     }
@@ -116,11 +120,11 @@ const Game = () => {
           setShow={setShow}
           addGames={addGames}
           entryFee={entryFee}
-          setCurrency
+          setCurrency={setCurrency}
           currency={currency}
-          setPrivacy
+          setPrivacy={setPrivacy}
           privacy={privacy}
-          setEntryFee
+          setEntryFee={setEntryFee}
         />
       )}
     </div>

@@ -8,24 +8,17 @@ import Timer from "../../src/components/room/common/Timer";
 import styles from "../../src/styles/Room.module.css";
 import { withRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-interface Props {
-  spectating: boolean;
-  roomId: string;
-  players: string;
-  hasEnded?: boolean;
-}
+import { RootState } from "../../src/redux/rootReducer";
+
 const Room: FC = () => {
   const router = useRouter();
 
-  const user = useSelector((state:any) => state.auth);
-  if(!user?.isAuthenticated){
-      // router.back()
+  const user = useSelector((state:RootState) => state.user);
+useEffect(()=>{
+  if(user.address !== '' || !user.address ){
+    router.push('/')
   }
-  useEffect(()=>{
-      if(!user?.isAuthenticated){
-          router.back()
-      }  
-  })
+})
   const { roomId } = router.query;
   const spectating = Object(roomId)[1] === "2";
   const goBack = () => {

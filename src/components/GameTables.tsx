@@ -3,17 +3,9 @@ import React, { FC, useEffect, useState } from "react";
 import LoungeButton from "./game/LoungeButton";
 import {useSelector } from 'react-redux';
 import EmptyState from "./game/EmptyState";
-export type Games = {
-  id: number;
-  entryFee: number;
-  privacy: string;
-  limit: number;
-  created_on: string;
-  ended: boolean;
-  currency: string;
-  winner?: string;
-  date_ended?: string;
-};
+import { RootState } from "../redux/rootReducer";
+import { Games } from "../redux/types";
+
 
 interface Props {
   goto: any;
@@ -21,9 +13,19 @@ interface Props {
   available: boolean;
 }
 const GameTables: FC<Props> = ({ goto, available }: Props) => {
-  const {games} = useSelector((state:any) => state.games);
+  const games = useSelector((state:RootState) => state.game.games);
+
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
+  useEffect(()=> {
+   if(localStorage.getItem('games')!){
+    const g = JSON.parse(localStorage.getItem('games')!);
+    console.log(g)
+  //     setGames( g.games);
+  //  }else{
+
+   } 
+  },[]);
   useEffect(() => {
     if(games && games.length > 0 ){
     const filteredAvail = games?.filter((item:any) => {

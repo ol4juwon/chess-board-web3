@@ -1,40 +1,24 @@
-import { type } from 'os';
-import { Games } from '../../components/GameTables';
-import * as types from '../types/games';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Games, GameState } from "../types";
 
-const initialState = {
-  isLoading: false,
-games: []
+const initialState: GameState = {
+  games: []
 };
 
-const GameReducer = (state = initialState, action: { type: any; payload: { data: any; }; }) => {
-  switch (action.type) {
-    case types.GET_AVAILABLE_GAMES_REQUEST:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case types.GET_AVAILABLE_GAMES_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-       game: action.payload
-      };
-    case types.GET_AVAILABLE_GAMES_ERROR:
-      return {
-        ...state,
-        isLoading: false
-      };
-      case types.ADD_GAME_SUCCESS:
-        console.log('adding', state.games, action.payload)
-        return {
-          ...state,
-          isLoading: false,
-          games: action.payload,
-        }
-    default:
+const gameStateSlice = createSlice({
+  name: "Game state",
+  initialState,
+  reducers: {
+    resetGame(state) {
+      state = initialState;
       return state;
-  }
-};
+    },
+    addgame(state, action: PayloadAction<Games>) {
+      console.log('ss')
+      state.games.push(action.payload)
+    },
+  },
+});
 
-export default GameReducer;
+export const { addgame, resetGame } = gameStateSlice.actions;
+export default gameStateSlice.reducer;
