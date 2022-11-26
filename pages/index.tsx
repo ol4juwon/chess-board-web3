@@ -1,15 +1,17 @@
 import Head from "next/head";
 import { useRouter } from 'next/router'
-import Navbar from "../components/Navbar";
-import styles from "../styles/Home.module.css";
-import { useLogin } from "../hooks/useLogin";
-import SignInButton from "../components/SignInButton";
+import Navbar from "../src/components/Navbar";
+import styles from "../src/styles/Home.module.css";
+import SignInButton from "../src/components/SignInButton";
+import { wrapper } from "../src/redux/store";
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { signRequest } from "../src/redux/actions/auth";
 var Web3 = require("web3");
 var web3 = new Web3(
   Web3.givenProvider || "ws://some.local-or-remote.node:8546"
 );
 export default function Home() {
-  const { login } = useLogin();
+  const dispatch = useDispatch(); 
   const router = useRouter();
 
   const isWalletConnected = async () => {
@@ -19,14 +21,16 @@ export default function Home() {
     }
     console.log(ethereum);
     try {
-      ethereum.enable().then(async (rs) => {
+      ethereum.enable().then(async (rs: string[]) => {
         let balance = await web3.eth.getBalance(rs[0]);
-        console.log(rs, balance, "..");
-        login(rs[0], balance);
+        // console.log(rs, balance, "..");
+        // login(rs[0], balance);
+        const add = rs[0];
+       dispatch(signRequest(add, balance));
        router.push('/game');
       });
     } catch (error) {
-      console.log(error);
+      console.log("lk",error);
     }
   };
   const signInOptions = [
@@ -67,7 +71,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Navbar />
+        <Navbar locaction="index" />
         <section className={styles.container}>
           <h1 className={styles.heading}>Welcome to Chess Games</h1>
 
@@ -96,3 +100,8 @@ export default function Home() {
     </div>
   );
 }
+Home.getInitialProps = wrapper.getInitialPageProps(
+  ({dispatch}) => async()  => {
+    //get user
+  }
+)

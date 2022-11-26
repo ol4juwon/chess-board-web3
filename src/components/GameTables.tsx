@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
 import LoungeButton from "./game/LoungeButton";
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import EmptyState from "./game/emptyState";
 export type Games = {
   id: number;
   entryFee: number;
@@ -18,23 +20,18 @@ interface Props {
   games?: Games[];
   available: boolean;
 }
-const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
-   try{ const i = localStorage.getItem('games');
-    const c = i && JSON.parse(i);
-    console.log("local store games", c);
-}catch(ee){
-    console.log(" eere",ee)
-}
+const GameTables: FC<Props> = ({ goto, available }: Props) => {
+  const {games} = useSelector((state) => state.games);
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
   useEffect(() => {
     if(games && games.length > 0 ){
-    const filteredAvail = games?.filter((game) => {
-      return game.ended == false;
+    const filteredAvail = games?.filter((item) => {
+      return item.ended == false;
     });
     setAvailGames(filteredAvail);
-    const filteredUnavail = games?.filter((game) => {
-      return game.ended;
+    const filteredUnavail = games?.filter((item) => {
+      return item.ended;
     });
 
     setEndedGames(filteredUnavail);
@@ -108,12 +105,7 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
             );
           })
         ) : (
-          <div className="w-full flex flex-col justify-center items-center h-auto lg:h-320px">
-            <i className="fas fa-chess-board font-extrabold text-9xl "></i>
-            <p className="lg:text-2xl text-xl text-center">
-              No Available Chess Games yet. Create one to get started
-            </p>
-          </div>
+       <EmptyState/>
         )
       ) : endedGames && endedGames.length > 0 ? (
         endedGames.map((game) => {
@@ -152,12 +144,7 @@ const GameTables: FC<Props> = ({ goto, games, available }: Props) => {
           //    }
         })
       ) : (
-        <div className="w-full flex flex-col justify-center items-center h-320px">
-          <i className="fas fa-chess-board font-extrabold text-9xl "></i>
-          <p className="lg:text-2xl text-xl text-center">
-            No Completed Chess Games yet
-          </p>
-        </div>
+      <EmptyState />
       )}</div>
     </div>
   );

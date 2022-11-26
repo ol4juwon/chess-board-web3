@@ -1,28 +1,35 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { withRouter } from 'next/router'
+import { withRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import CreateRoom from "../components/game/createButton/CreateRoom";
-import DateButton from "../components/game/dateButton/DateButton";
-import GameTables, { Games } from "../components/GameTables";
-import Navbar from "../components/Navbar";
-import styles from "../styles/games.module.css";
-import { useAddGame } from "../hooks/useAddGame";
-import { useGameContext } from "../hooks/useGameContext";
-import { useAuthContext } from "../hooks/useAuthContext";
+import CreateRoom from "../src/components/game/createButton/CreateRoom";
+import DateButton from "../src/components/game/dateButton/DateButton";
+import GameTables, { Games } from "../src/components/GameTables";
+import Navbar from "../src/components/Navbar";
+import styles from "../src/styles/games.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addGame } from "../src/redux/actions/game";
+import CreateGameModal from "../src/components/game/CreateGameModal";
 type AddGameType = {
   currency: string;
   entryFee: number;
   privacy: string;
 };
 const Game = () => {
-  const { game } = useGameContext();
-  const {user} = useAuthContext();
-  const { error, loading, addGame } = useAddGame();
+  const game = useSelector((state) => state.games.games);
+  const router = useRouter();
+  const user = useSelector((state) => state.auth);
+  if (!user?.isAuthenticated) {
+    // router.back()
+  }
+  useEffect(() => {
+    if (!user?.isAuthenticated) {
+      router.back();
+    }
+  }, [user]);
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
-  const router = useRouter();
-  const [games, setGames] = useState(game);
+  const dispatch = useDispatch();
   const [currency, setCurrency] = useState("ETH");
   const [privacy, setPrivacy] = useState("public");
   const [entryFee, setEntryFee] = useState(0.05);
@@ -36,9 +43,8 @@ const Game = () => {
       const creta = `${new Date(Date.now()).getDay()}/${new Date(
         Date.now()
       ).getMonth()}/${new Date(Date.now()).getUTCFullYear()}`;
-      console.log("ee", creta);
       const data = {
-        id: games.length + 1,
+        id: game ? game.length + 1 : 1,
         ended: false,
         limit: 2,
         currency,
@@ -46,10 +52,8 @@ const Game = () => {
         privacy,
         created_on: creta,
       };
-      // setGames(prevGame => [...prevGame, data]);
-      console.log(typeof games, games);
-      setGames((prevGame) => prevGame? [...prevGame, data]: [data] );
-      addGame(games);
+      const payload = [...game, data];
+      dispatch(addGame(payload));
     } catch (error) {
       console.log("error", error);
     }
@@ -84,7 +88,9 @@ const Game = () => {
                 setAvailable(!available);
               }}
               className={`
-                ${available ? "border-b-2 border-solid border-colors-black" : ""} text-bold text-center
+                ${
+                  available ? "border-b-2 border-solid border-colors-black" : ""
+                } text-bold text-center
               `}
             >
               Available Games
@@ -94,92 +100,32 @@ const Game = () => {
                 setAvailable(!available);
               }}
               className={`
-                ${!available
-                  ? "b border-b-2 border-solid border-colors-black"
-                  : ""} text-center`
-              }
+                ${
+                  !available
+                    ? "b border-b-2 border-solid border-colors-black"
+                    : ""
+                } text-center`}
             >
               Unavailable Games
             </div>
           </div>
           <div className="bg-colors-white">
-            <GameTables goto={startGame} games={games} available={available} />
+            <GameTables goto={startGame} available={available} />
           </div>
         </div>
       </main>
       {show && (
-        <div
-          className={`flex  justify-center  items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-mofa `}
-        >
-          <div className=" p-10 w-300px lg:w-500px shadow-md  bg-colors-white">
-            <div>
-              <h2 className="my-2 font-extrabold text-md"> Create New Room</h2>
-              <form>
-                <div className="my-3">
-                  <label>
-                    <span>Entry Fee</span>
-                    <div className="w-full border-mt-grey border-1 p-2 px-5 rounded-md">
-                      <input
-                        type="num"
-                        value={entryFee}
-                        onChange={(e) => {
-                          setEntryFee(e.target.value);
-                        }}
-                        className="w-4/5"
-                      />
-                      <select
-                        value={currency}
-                        onChange={(e) => setCurrency(e.target.value)}
-                        className="w-1/5"
-                      >
-                        <option value="ETH">ETH</option>
-                        <option value="BSD">BUSD</option>
-                        <option value="BTC">BTC</option>
-                      </select>
-                    </div>
-                  </label>
-                </div>
-                <div className="my-3">
-                  <label>
-                    <span>Room Privacy</span>
-                    <div className="w-full p-2 rounded-md px-5 border-mt-grey border-1">
-                      <select
-                        value={privacy}
-                        onChange={(e) => {
-                          setPrivacy(e.target.value);
-                        }}
-                        className="w-full "
-                      >
-                        <option value="public">Public</option>
-                        <option value="private">Private</option>
-                      </select>
-                    </div>
-                  </label>
-                </div>
-                <div className="w-full my-3 flex text-xs justify-end">
-                  <button
-                    onClick={() => setShow(!show)}
-                    className="mx-2 w-20 p-2 border-colors-black border-solid border-1 rounded-lg"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={addGames}
-                    className="p-2 bg-primary-btn w-20 rounded-lg text-colors-white"
-                    type="button"
-                    aria-label="save"
-                    name="save"
-                  >
-                    Save
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <CreateGameModal
+          show={show}
+          setShow={setShow}
+          addGames={addGames}
+          entryFee={entryFee}
+          currency={currency}
+          privacy={privacy}
+        />
       )}
     </div>
   );
 };
 
-export default withRouter(Game);
+export default Game;

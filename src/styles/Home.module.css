@@ -14,12 +14,17 @@
   height: 100vh;
 }
 .heading{
+  font-family: 'Gilroy-bold';
   margin: 20px auto;
+  margin-bottom: 10px;
  font-size: 46px;
- font-weight: bold;
- line-height: 50px;
+ /* font-weight: 600; */
+ font-style: normal;
+ line-height: 73px;
 }
-
+.tagLine{
+  font-size: 16px;
+}
 
 
 @media (max-width: 600px) {

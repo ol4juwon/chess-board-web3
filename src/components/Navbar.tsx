@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import chessPawn from "@iconify/icons-noto/chess-pawn";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useSelector } from 'react-redux';
+import Link from "next/link";
 interface Props {
   locaction?: any;
 }
 const Navbar: FC<Props> = ({ locaction }: Props) => {
-  const { user } = useAuthContext();
   const [navbar, setNavbar] = useState(false);
-  console.log(locaction);
+  const user = useSelector((state) => state.auth);
+  const isIndex = locaction === 'index';
+  const isRoom = locaction === 'room';
   return (
     <div className={styles.nav}>
-        <div className="w-auto flex flex-row items-center justify-center">
+      <Link href='/'>
+      <div className="w-auto flex flex-row items-center justify-center">
         <span
         className={`${
-          locaction ? "text-colors-white " : "text text-colors-black"
+          isRoom ? "text-colors-white " : "text text-colors-black"
         } lg:font-extrabold lg:text-4xl`}
       >
         Chess
@@ -76,23 +79,27 @@ const Navbar: FC<Props> = ({ locaction }: Props) => {
         </svg>
         <span
               className={`${
-                locaction ? "text-colors-white " : "text text-colors-black"
+                isRoom ? "text-colors-white " : "text text-colors-black"
               } lg:font-extrabold lg:text-4xl`}
         >
         Games
       </span>
         </div>
-      
-      <div className={styles.account}>
-        <div className={styles.balance}>{user?.balance || 0}ETH</div>
+      </Link>
+     
+      {
+        !isIndex &&  (<div className={styles.account}>
+        <div className={styles.balance}> {user?.balance || 0 } ETH</div>
         <div
           className={`w-1/2 ${
             locaction ? "bg-primary-grey text-colors-white" : "bg-colors-white"
           } rounded-r-md text-center flex items-center justify-center `}
         >
-          {user?.address?.substr(0, 6) || "0xdd"}
+          {user?.user?.address ? `${user?.user?.address.substr(0,6)}...` : 'Unk'}
         </div>
-      </div>
+      </div>)
+      }
+ 
     </div>
   );
 };

@@ -1,12 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { FC } from "react";
-import Chessboard from "../../components/room/chessboard/Chessboard";
-import Navbar from "../../components/Navbar";
-import PlayerTag from "../../components/room/common/PlayerTag";
-import Timer from "../../components/room/common/Timer";
-import styles from "../../styles/Room.module.css";
-import { withRouter } from 'next/router'
+import React, { FC, useEffect } from "react";
+import Chessboard from "../../src/components/room/chessboard/Chessboard";
+import Navbar from "../../src/components/Navbar";
+import PlayerTag from "../../src/components/room/common/PlayerTag";
+import Timer from "../../src/components/room/common/Timer";
+import styles from "../../src/styles/Room.module.css";
+import { withRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 interface Props {
   spectating: boolean;
   roomId: string;
@@ -15,7 +16,18 @@ interface Props {
 }
 const Room: FC = () => {
   const router = useRouter();
-  console.log(router.query);
+
+  const user = useSelector((state) => state.auth);
+  if(!user?.isAuthenticated){
+      // router.back()
+  }
+  useEffect(()=>{
+      if(!user?.isAuthenticated){
+          router.back()
+      }  
+  },
+  [user]
+  )
   const { roomId } = router.query;
   const spectating = Object(roomId)[1] === "2";
   const goBack = () => {
