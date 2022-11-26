@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { withRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import CreateRoom from "../src/components/game/createButton/CreateRoom";
 import DateButton from "../src/components/game/dateButton/DateButton";
@@ -10,18 +9,15 @@ import styles from "../src/styles/games.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addGame } from "../src/redux/actions/game";
 import CreateGameModal from "../src/components/game/CreateGameModal";
-type AddGameType = {
-  currency: string;
-  entryFee: number;
-  privacy: string;
-};
+// type AddGameType = {
+//   currency: string;
+//   entryFee: number;
+//   privacy: string;
+// };
 const Game = () => {
-  const game = useSelector((state) => state.games.games);
+  const game = useSelector((state: any) => state.games.games);
   const router = useRouter();
-  const user = useSelector((state) => state.auth);
-  if (!user?.isAuthenticated) {
-    // router.back()
-  }
+  const user = useSelector((state:any) => state.auth);
   useEffect(() => {
     if (!user?.isAuthenticated) {
       router.back();

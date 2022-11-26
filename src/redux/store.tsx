@@ -82,7 +82,7 @@ export const store = createStore(
 
  applyMiddleware(...middleware)
 );
-store.__PERSISTOR = persistStore(store);
+// store.__PERSISTOR = persistStore(store);
 // assigning store to next wrapper
 const makeStore = () => store;
 
