@@ -17,7 +17,7 @@ interface Props {
 const Room: FC = () => {
   const router = useRouter();
 
-  const user = useSelector((state) => state.auth);
+  const user = useSelector((state:any) => state.auth);
   if(!user?.isAuthenticated){
       // router.back()
   }
@@ -25,9 +25,7 @@ const Room: FC = () => {
       if(!user?.isAuthenticated){
           router.back()
       }  
-  },
-  [user]
-  )
+  })
   const { roomId } = router.query;
   const spectating = Object(roomId)[1] === "2";
   const goBack = () => {

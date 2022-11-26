@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
 import LoungeButton from "./game/LoungeButton";
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import EmptyState from "./game/emptyState";
+import {useSelector } from 'react-redux';
+import EmptyState from "./game/EmptyState";
 export type Games = {
   id: number;
   entryFee: number;
@@ -21,16 +21,16 @@ interface Props {
   available: boolean;
 }
 const GameTables: FC<Props> = ({ goto, available }: Props) => {
-  const {games} = useSelector((state) => state.games);
+  const {games} = useSelector((state:any) => state.games);
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
   useEffect(() => {
     if(games && games.length > 0 ){
-    const filteredAvail = games?.filter((item) => {
+    const filteredAvail = games?.filter((item:any) => {
       return item.ended == false;
     });
     setAvailGames(filteredAvail);
-    const filteredUnavail = games?.filter((item) => {
+    const filteredUnavail = games?.filter((item:any) => {
       return item.ended;
     });
 

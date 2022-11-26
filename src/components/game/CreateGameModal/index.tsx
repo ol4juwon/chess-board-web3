@@ -3,11 +3,14 @@ interface Props{
     show: boolean;
     setShow: any;
     entryFee: number;
+    setEntryFee: any;
     privacy: string;
+    setPrivacy: any;
     currency: string;
+    setCurrency: any;
     addGames: () => void;
 }
-const CreateGameModal : FC<Props> = ({show, setShow, entryFee,currency, privacy, addGames}: Props) => {
+const CreateGameModal : FC<Props> = ({show, setShow, entryFee, setEntryFee, setCurrency,currency, setPrivacy, privacy, addGames}: Props) => {
   return (
     <div
     className={`flex  justify-center  items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-mofa `}

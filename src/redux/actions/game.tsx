@@ -1,7 +1,7 @@
 import * as types from '../types/games';
 export const addGame =
   (payload: any) =>
-  (dispatch: (arg0: { type: string; payload?: any; }) => void) => {
+  (dispatch:any) => {
 
     dispatch({
       type: types.ADD_GAME_REQUEST

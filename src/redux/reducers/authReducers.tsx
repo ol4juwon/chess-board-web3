@@ -6,7 +6,7 @@ const initialState = {
   user: null
 };
 
-const authReducer = (state = initialState, action: { type; payload }) => {
+const authReducer = (state = initialState, action: { type:any; payload:any }) => {
   switch (action.type) {
     case types.GET_USER_DETAILS_REQUEST:
       return {

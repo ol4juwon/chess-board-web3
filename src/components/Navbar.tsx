@@ -10,7 +10,7 @@ interface Props {
 }
 const Navbar: FC<Props> = ({ locaction }: Props) => {
   const [navbar, setNavbar] = useState(false);
-  const user = useSelector((state) => state.auth);
+  const user = useSelector((state:any) => state.auth);
   const isIndex = locaction === 'index';
   const isRoom = locaction === 'room';
   return (

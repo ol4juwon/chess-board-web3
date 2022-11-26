@@ -1,17 +1,18 @@
 import Head from "next/head";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Navbar from "../src/components/Navbar";
 import styles from "../src/styles/Home.module.css";
 import SignInButton from "../src/components/SignInButton";
 import { wrapper } from "../src/redux/store";
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { signRequest } from "../src/redux/actions/auth";
+import Script from "next/script";
 var Web3 = require("web3");
 var web3 = new Web3(
   Web3.givenProvider || "ws://some.local-or-remote.node:8546"
 );
 export default function Home() {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const isWalletConnected = async () => {
@@ -26,11 +27,11 @@ export default function Home() {
         // console.log(rs, balance, "..");
         // login(rs[0], balance);
         const add = rs[0];
-       dispatch(signRequest(add, balance));
-       router.push('/game');
+        dispatch(signRequest(add, balance));
+        router.push("/game");
       });
     } catch (error) {
-      console.log("lk",error);
+      console.log("lk", error);
     }
   };
   const signInOptions = [
@@ -66,8 +67,6 @@ export default function Home() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <link rel="stylesheet" href="../styles/Home.css" />
-        <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
       </Head>
 
       <main className={styles.main}>
@@ -97,11 +96,13 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <Script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></Script>
     </div>
   );
 }
 Home.getInitialProps = wrapper.getInitialPageProps(
-  ({dispatch}) => async()  => {
-    //get user
-  }
-)
+  ({ dispatch }) =>
+    async () => {
+      //get user
+    }
+);

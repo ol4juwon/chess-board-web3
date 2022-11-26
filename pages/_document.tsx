@@ -5,11 +5,12 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="stylesheet" href="..." />
       </Head>
       <body>
         <Main />
-        <NextScript />
+        <NextScript>
+
+            </NextScript>
       </body>
     </Html>
   )

@@ -22,7 +22,7 @@ const Game = () => {
     if (!user?.isAuthenticated) {
       router.back();
     }
-  }, [user]);
+  }, );
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -116,8 +116,11 @@ const Game = () => {
           setShow={setShow}
           addGames={addGames}
           entryFee={entryFee}
+          setCurrency
           currency={currency}
+          setPrivacy
           privacy={privacy}
+          setEntryFee
         />
       )}
     </div>
