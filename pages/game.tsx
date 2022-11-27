@@ -8,15 +8,16 @@ import Navbar from "../src/components/Navbar";
 import styles from "../src/styles/games.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import CreateGameModal from "../src/components/game/CreateGameModal";
-import { addgame } from "../src/redux/reducers/gameReducers";
 import { RootState } from "../src/redux/rootReducer";
+import { addGame } from "../src/redux/reducers/games/gamesByIdSlice";
+import { addGameId } from "../src/redux/reducers/games/allGamesSlice";
 // type AddGameType = {
 //   currency: string;
 //   entryFee: number;
 //   privacy: string;
 // };
 const Game = () => {
-  const game = useSelector((state:RootState) => state.game.games);
+  const game = useSelector((state:RootState) => state.game);
   const router = useRouter();
   const user = useSelector((state:RootState) => state.user);
   useEffect(() => {
@@ -44,7 +45,7 @@ const Game = () => {
         Date.now()
       ).getMonth()}/${new Date(Date.now()).getUTCFullYear()}`;
       const data = {
-        id: game ? game.length + 1 : 1,
+        id: new Date().getTime(),
         ended: false,
         limit: 2,
         currency,
@@ -52,8 +53,10 @@ const Game = () => {
         privacy,
         created_on: creta,
       };
+      console.log("adding 55" , data )
 
-      dispatch(addgame(data));
+      dispatch(addGame(data));
+      dispatch(addGameId(data))
     } catch (error) {
       console.log("error", error);
     }

@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from './reducers/authReducers';
-import gameReducer from './reducers/gameReducers';
+import gameReducer from './reducers/games/gamesSlice';
 // enableMapSet();
 
 

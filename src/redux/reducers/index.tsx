@@ -1,6 +1,6 @@
 import { CombinedState, combineReducers } from "redux";
 import authReducer from "./authReducers";
-import gameReducer from "./gameReducers";
+import gameReducer from "./games/gamesSlice";
 const appReducer = combineReducers({
   auth: authReducer,
   games: gameReducer

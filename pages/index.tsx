@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import Script from "next/script";
 import { setUser } from "../src/redux/reducers/authReducers";
 import { useEffect } from "react";
-import { resetGame } from "../src/redux/reducers/gameReducers";
+// import { resetGame } from "../src/redux/reducers/games/gameReducers";
 var Web3 = require("web3");
 var web3 = new Web3(
   Web3.givenProvider || "ws://some.local-or-remote.node:8546"
@@ -18,7 +18,7 @@ export default function Home() {
   const router = useRouter();
 useEffect(()=> {
   localStorage.clear();
-  dispatch(resetGame());
+  // dispatch(resetGame());
 })
   const isWalletConnected = async () => {
     const { ethereum } = window;

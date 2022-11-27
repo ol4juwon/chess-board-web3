@@ -13,32 +13,46 @@ interface Props {
   available: boolean;
 }
 const GameTables: FC<Props> = ({ goto, available }: Props) => {
-  const games = useSelector((state:RootState) => state.game.games);
-
+  const gamesId = useSelector((state:RootState) => state.game.allIds);
+  const games = useSelector((state:RootState) => state.game.byId);
+// console.log('games', games);
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
-  useEffect(()=> {
-   if(localStorage.getItem('games')!){
-    const g = JSON.parse(localStorage.getItem('games')!);
-    console.log(g)
-  //     setGames( g.games);
-  //  }else{
+  // useEffect(()=> {
+  //  if(localStorage.getItem('games')!){
+  //   const g = JSON.parse(localStorage.getItem('games')!);
+  //   console.log(g)
+  // //     setGames( g.games);
+  // //  }else{
 
-   } 
-  },[]);
+  //  } 
+  // },[]);
   useEffect(() => {
-    if(games && games.length > 0 ){
-    const filteredAvail = games?.filter((item:any) => {
-      return item.ended == false;
-    });
-    setAvailGames(filteredAvail);
-    const filteredUnavail = games?.filter((item:any) => {
-      return item.ended;
-    });
+    if(games && Object.entries(gamesId).length > 0 ){
+      const AllGames : Games[] = [];
+    //  console.log(Object.entries(gamesId))
+     Object.entries(gamesId).map((game,index) => {
+      // console.log(index)
+      AllGames.push(games[game[1]]);
+     })
 
-    setEndedGames(filteredUnavail);
+    // console.log(AllGames)
+
+    const filteredAvail = AllGames.filter((game) => {
+      console.log('game',game)
+      return !game.ended
+    })
+    setAvailGames(filteredAvail);
+    // const filteredUnavail =AllGames.filter((game)=> {
+    //   console.log('oo')
+    //   return game
+    // })
+
+
+    // setEndedGames(filteredUnavail);
+    // console.log('avail', filteredAvail, 'unavail', filteredUnavail);
 }
-  }, [games]);
+  }, [gamesId]);
   return (
     <div className="lg:px-10 px-2">
       <div className="w-full flex flex-col lg:flex-row ">
@@ -70,14 +84,14 @@ const GameTables: FC<Props> = ({ goto, available }: Props) => {
       <div className="h-260px lg:h-400px overflow-scroll">
       {available ? (
         availGames && availGames.length > 0 ? (
-          availGames.map((game) => {
+          availGames.map((game,index) => {
             return (
               <div
                 key={game.id}
                 className="w-full flex my-5 flex-col border-b-mt-grey border-b-1 pb-4 lg:flex-row "
               >
                 <div className="w-full  grid grid-cols-5 gap-x-0.5 lg:gap-0.5 lg:p-1 lg:w-4/6">
-                  <div>{game.id}</div>
+                  <div>{index+1}</div>
                   <div>{game.limit}</div>
                   <div>
                     {game.entryFee
