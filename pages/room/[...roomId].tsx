@@ -12,13 +12,12 @@ import { RootState } from "../../src/redux/rootReducer";
 
 const Room: FC = () => {
   const router = useRouter();
-
   const user = useSelector((state:RootState) => state.user);
-useEffect(()=>{
-  if(user.address !== '' || !user.address ){
-    router.push('/')
-  }
-})
+  useEffect(() => {
+    if (user.address === '' || !user.address) {
+      router.push('/');
+    }
+  },[] );
   const { roomId } = router.query;
   const spectating = Object(roomId)[1] === "2";
   const goBack = () => {

@@ -93,8 +93,9 @@ const Game = () => {
               className={`
                 ${
                   available ? "border-b-2 border-solid border-colors-black" : ""
-                } text-bold text-center
+                } text-normal text-center
               `}
+              style={{fontFamily: 'Gilroy'}}
             >
               Available Games
             </div>{" "}

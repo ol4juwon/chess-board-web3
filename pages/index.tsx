@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Navbar from "../src/components/Navbar";
 import styles from "../src/styles/Home.module.css";
-import SignInButton from "../src/components/SignInButton";
+import SignInButton from "../src/components/SignInButton/SignInButton";
 import { wrapper } from "../src/redux/store";
 import { useDispatch } from "react-redux";
 import Script from "next/script";

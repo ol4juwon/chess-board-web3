@@ -15,44 +15,26 @@ interface Props {
 const GameTables: FC<Props> = ({ goto, available }: Props) => {
   const gamesId = useSelector((state:RootState) => state.game.allIds);
   const games = useSelector((state:RootState) => state.game.byId);
-// console.log('games', games);
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
-  // useEffect(()=> {
-  //  if(localStorage.getItem('games')!){
-  //   const g = JSON.parse(localStorage.getItem('games')!);
-  //   console.log(g)
-  // //     setGames( g.games);
-  // //  }else{
-
-  //  } 
-  // },[]);
   useEffect(() => {
     if(games && Object.entries(gamesId).length > 0 ){
       const AllGames : Games[] = [];
-    //  console.log(Object.entries(gamesId))
-     Object.entries(gamesId).map((game,index) => {
-      // console.log(index)
+     Object.entries(gamesId).map((game) => {
       AllGames.push(games[game[1]]);
      })
 
-    // console.log(AllGames)
 
     const filteredAvail = AllGames.filter((game) => {
-      console.log('game',game)
       return !game.ended
     })
     setAvailGames(filteredAvail);
-    // const filteredUnavail =AllGames.filter((game)=> {
-    //   console.log('oo')
-    //   return game
-    // })
-
-
-    // setEndedGames(filteredUnavail);
-    // console.log('avail', filteredAvail, 'unavail', filteredUnavail);
+    const filteredUnavail =AllGames.filter((game)=> {
+      return game.ended
+    })
+    setEndedGames(filteredUnavail);
 }
-  }, [gamesId]);
+  }, [games,gamesId]);
   return (
     <div className="lg:px-10 px-2">
       <div className="w-full flex flex-col lg:flex-row ">
@@ -124,14 +106,14 @@ const GameTables: FC<Props> = ({ goto, available }: Props) => {
        <EmptyState/>
         )
       ) : endedGames && endedGames.length > 0 ? (
-        endedGames.map((game) => {
+        endedGames.map((game,index) => {
           return (
             <div
               key={game.id}
               className="w-full flex my-5 flex-col border-b-light-gret border-b-1 pb-4 lg:flex-row "
             >
               <div className="w-full  grid grid-cols-5 gap-x-0.5 lg:gap-0.5 lg:p-1 lg:w-4/6">
-                <div>{game.id}</div>
+                <div>{index+1}</div>
                 <div>{game.limit}</div>
                 <div>
                   {game.entryFee

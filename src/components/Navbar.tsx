@@ -96,7 +96,7 @@ const Navbar: FC<Props> = ({ locaction }: Props) => {
             locaction ? "bg-primary-grey text-colors-white" : "bg-colors-white"
           } rounded-r-md text-center flex items-center justify-center `}
         >
-          {user?.address ? `${user.address.substring(0,6)}...` : 'Unk'}
+          {user?.address ? `${user.address.substring(0,6)}` : 'Unk'}
         </div>
       </div>)
       }

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./DateButton.module.css";
+import { Calendar } from "./Icon";
 
 interface Props {
   value?: any;
@@ -8,7 +9,8 @@ interface Props {
 const DateButton = ({ value, setValue }: Props) => {
   return (
     <div className={styles.dateButton}>
-      <i className="fas fa-calendar" aria-hidden="true"></i>
+      <Calendar />
+      {/* <i className="fas fa-calendar" aria-hidden="true"></i> */}
     <select className='bg-colors-transparent'>
         
         <option>
