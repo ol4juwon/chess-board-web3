@@ -20,7 +20,7 @@ useEffect(()=> {
   const isWalletConnected = async () => {
     const { ethereum } = window;
     if (!ethereum) {
-      console.log("not connected");
+      alert('Please connect to metamask')
     }
     console.log(ethereum);
     try {

@@ -6,7 +6,8 @@ interface Props {
 }
 const EvenBoard: FC<Props> = ({ chessPieces, index, isEven }: Props) => {
   return (
-    <div
+    <div 
+    onClick={()=> {console.log(index)}}
       className={`w-10 h-10 md:w-20 md:h-20 flex flex-row ${
         isEven
           ? (index + 1) % 2 == 0
