@@ -1,0 +1,70 @@
+        {/* <div className={styles.board}>
+          <div
+            className="w-full flex lg:flex-row  text-center justify-between lg:align-top"
+            onClick={goBack}
+          >
+            <div><span className="w-auto flex flex-row justify-start items-center text-center ">
+              <i className="fa fa-angle-left p-1" aria-hidden="true"></i>{" "}
+              <span>Go Back</span>
+            </span></div>
+            
+            {spectating && (
+              <div className="lg:w-3/4 w-3/4 mx-auto flex flex-row mb-12 justify-center lg:text-2xl text-xl font-extrabold">
+                SPECTATING
+              </div>
+            )}
+          </div>
+          <div className="w-full">
+           
+            <div className="w-320px md:w-320px mx-auto flex lg:w-640px">
+              <div className=" w-1/2 flex justify-start">
+                <PlayerTag name="andy" />
+              </div>
+              <div className=" w-1/2 flex justify-end">
+                <Timer />
+              </div>
+            </div>
+            <div className="w-320px mx-auto lg:w-640px ">
+              {/* <Chessboard /> */}
+            </div>
+
+            <div className="w-320px mx-auto flex lg:w-640px">
+              <div className=" w-1/2 flex justify-start">
+                <PlayerTag name="me" />
+              </div>
+              <div className=" w-1/2 flex justify-end">
+                <Timer />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        ---------------fa-border
+
+
+
+        <div className="col-span-1 h-full border-solid border-colors-red-400 border-1 flex flex-col items-start justify-start text-colors-white ">
+            {/* <p className="w-full p-4 text-colors-white border-solid border-colors-green-200 border-1">
+              <i className="fa fa-chevron-left" aria-hidden="true"></i> go
+              back
+            </p> */}
+          </div>
+          <div className="w-full col-span-10 h-full  flex flex-col justify-start text-colors-white border-solid border-colors-white border-1">
+            {/* <div className="w-660px mx-auto h-auto flex flex-col justify-between text-colors-white">
+              <p className="w-full mx-auto md:w-640px text-colors-white border-solid border-colors-white border-1 text-center">
+                spectating
+              </p>
+              <div className="w-full flex justify-between">
+                <PlayerTag /> <Timer />
+              </div>
+            </div>
+            <div className="p-2 w-660px mx-auto bg-primary-grey">
+             <Chessboard /> 
+            </div>
+            <div className="w-full flex justify-between text-colors-white">
+              <PlayerTag /> <Timer />
+            </div> */}
+          </div>

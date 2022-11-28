@@ -1,8 +1,5 @@
-import Image from "next/image";
 import React, { FC } from "react";
 import { Metamask } from "./Icons";
-// import styled from 'styled-components';
-import styles from "./SignInButton.module.css";
 interface SignInProps {
   name: string;
   icon: any;
@@ -22,17 +19,24 @@ const SignInButton: FC<SignInProps> = ({
     <div
       onClick={onClick}
       className={
-        "w-1/2 lg:w-400px rounded-full flex flex-row items-center justify-center px-10 py-4 my-5 mx-auto"
+        "w-320 text-sm md:text-md flex flex-row md:px-10 md:py-2 rounded-full items-center justify-center md:justify-start my-5 md:w-400px mx-auto"
       }
       style={{
         backgroundColor: bg ? "#438FFE" : "transparent",
         border: bg ? "none" : "1px solid black",
       }}
     >
-      <Metamask />
-      <p className={styles._heading} style={{ color: bg ? "white" : "black" }}>
-        {title}
-      </p>
+      <div className="w-1/4 py-2 ">
+        <Metamask />
+      </div>
+      <div className="py-2 w-3/4">
+        <p
+          className="text-center mx-auto"
+          style={{ color: bg ? "white" : "black" }}
+        >
+          {title}
+        </p>{" "}
+      </div>
     </div>
   );
 };

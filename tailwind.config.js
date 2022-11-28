@@ -14,11 +14,14 @@ module.exports = {
     },
     extend: {
       width: {
+        '340': '340px',
         '320px': '320px',
+        '340px': '340px',
         '400px': '400px',
         '500px': '500px',
         '550px': '550px',
         '640px': '640px',
+        '660px': '660px',
         '750px': '750px',
         '700px': '700px',
         '900px': '900px',
@@ -32,6 +35,7 @@ module.exports = {
         '400px': '400px',
         '500px': '500px',
         '640px': '640px',
+        '660px': '660px'
       },
       fontFamily: {
         Gilroy: ['Gilroy'],

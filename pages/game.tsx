@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CreateRoom from "../src/components/game/createButton/CreateRoom";
 import DateButton from "../src/components/game/dateButton/DateButton";
 import GameTables from "../src/components/GameTables";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../src/components/Navbar/Navbar";
 import styles from "../src/styles/games.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import CreateGameModal from "../src/components/game/CreateGameModal";
@@ -26,7 +26,7 @@ const Game = () => {
         
       router.push('/');
     }
-  },[] );
+  } );
   
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
@@ -78,13 +78,14 @@ const Game = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <main className={show ? "blur-sm" : ""}>
+      <main className={`${show ? "blur-sm" : ""} w-full md:w-full px-4 md:px-20 mx-auto`}>
         <Navbar />
-        <div className="w-full flex mx-auto justify-end sm:w-11/12 sm:mx-auto xs:w-11/12">
+        <section className={'w-full md:w-full '}>
+        <div className="w-full flex mx-auto justify-end  sm:mx-auto ">
           <DateButton />
           <CreateRoom show={show} setShow={setShow} />
         </div>
-        <div className="  mx-auto w-4/5 justify-start sm:w-11/12 xs:w-11/12">
+        <div className="w-full  mx-auto  justify-start ">
           <div className={styles.tabHeader}>
             <div
               onClick={() => {
@@ -117,6 +118,8 @@ const Game = () => {
             <GameTables goto={startGame} available={available} />
           </div>
         </div>
+        </section>
+        
       </main>
       {show && (
         <CreateGameModal

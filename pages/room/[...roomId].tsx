@@ -2,26 +2,26 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { FC, useEffect } from "react";
 import Chessboard from "../../src/components/room/chessboard/Chessboard";
-import Navbar from "../../src/components/Navbar";
+import Navbar from "../../src/components/Navbar/Navbar";
 import PlayerTag from "../../src/components/room/common/PlayerTag";
 import Timer from "../../src/components/room/common/Timer";
 import styles from "../../src/styles/Room.module.css";
-import { withRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { withRouter } from "next/router";
+import { useSelector } from "react-redux";
 import { RootState } from "../../src/redux/rootReducer";
 
 const Room: FC = () => {
   const router = useRouter();
-  const user = useSelector((state:RootState) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   useEffect(() => {
-    if (user.address === '' || !user.address) {
-      router.push('/');
+    if (user.address === "" || !user.address) {
+      router.push("/");
     }
-  },[] );
+  }, []);
   const { roomId } = router.query;
   const spectating = Object(roomId)[1] === "2";
   const goBack = () => {
-    router.push('/game');
+    router.push("/game");
   };
   return (
     <div>
@@ -37,48 +37,37 @@ const Room: FC = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <main className={styles.body}>
-        <Navbar locaction="room" />
-        <div className={styles.board}>
-          <div
-            className="w-full flex lg:flex-row  text-center justify-between lg:align-top"
-            onClick={goBack}
-          >
-            <div><span className="w-auto flex flex-row justify-start items-center text-center ">
-              <i className="fa fa-angle-left p-1" aria-hidden="true"></i>{" "}
-              <span>Go Back</span>
-            </span></div>
-            
-            {spectating && (
-              <div className="lg:w-3/4 w-3/4 mx-auto flex flex-row mb-12 justify-center lg:text-2xl text-xl font-extrabold">
-                SPECTATING
-              </div>
-            )}
-          </div>
-          <div className="w-full">
-           
-            <div className="w-320px md:w-320px mx-auto flex lg:w-640px">
-              <div className=" w-1/2 flex justify-start">
-                <PlayerTag name="andy" />
-              </div>
-              <div className=" w-1/2 flex justify-end">
-                <Timer />
-              </div>
-            </div>
-            <div className="w-320px mx-auto lg:w-640px ">
-              <Chessboard />
+      <main className={"h-screen md:h-auto w-full lg:w-full bg-colors-black"}>
+        <section className="h-full w-screen md:px-20 px-4 flex flex-col justify-start items-center">
+          <Navbar locaction="room" />
+
+          <div className="w-full relative h-full flex-col mx-auto text-colors-white">
+            <div className="w-full md:absolute md:top-6 md:left-4 flex flex-row items-center">
+              <i className="fa fa-chevron-left" aria-hidden="true"></i>
+              <span onClick={()=> {router.back()}}>go back</span>
             </div>
 
-            <div className="w-320px mx-auto flex lg:w-640px">
-              <div className=" w-1/2 flex justify-start">
-                <PlayerTag name="me" />
+            <div className="w-full flex flex-col justify-between items-center ">
+              {spectating && (
+                <div className="w-full lg:w-660px py-6 font-Gilroy font-bold text-2xl flex flex-row justify-center items-center">
+                  Spectating
+                </div>
+              )}
+              {/* <div className="w-auto flex flex-row justify-center max-w-7xl"> */}
+              <div className="md:w-660px w-full flex justify-between">
+                <PlayerTag />
+                <Timer />
               </div>
-              <div className=" w-1/2 flex justify-end">
+              {/* </div>  */}
+
+              <Chessboard />
+              <div className="w-full flex justify-between">
+                <PlayerTag />
                 <Timer />
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   );

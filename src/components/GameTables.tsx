@@ -63,7 +63,7 @@ const GameTables: FC<Props> = ({ goto, available }: Props) => {
         </div>
         <div className="w-full hidden lg:hidden bg-light-pink p-2 lg:w-2/6"></div>
       </div>
-      <div className="h-260px lg:h-400px overflow-scroll">
+      <div className="h-260px md:h-400px overflow-scroll">
       {available ? (
         availGames && availGames.length > 0 ? (
           availGames.map((game,index) => {

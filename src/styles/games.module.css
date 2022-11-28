@@ -1,3 +1,8 @@
+.container{
+    width: 100%;
+    max-width: 860px;
+}
+
 .tabHeader{
     width: 100%;
     display: flex;
@@ -15,9 +20,7 @@ margin: 0 auto;
     backdrop-filter: blur(2.5px);
     -webkit-backdrop-filter: blur(2.5px);
 }
-.bg-mofa{
-    background:red;
-}
+
 @media screen and (max-width:600px) {
     .tabHeader{
         width: 90%;
