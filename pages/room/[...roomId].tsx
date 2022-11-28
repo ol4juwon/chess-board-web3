@@ -61,7 +61,7 @@ const Room: FC = () => {
               {/* </div>  */}
 
               <Chessboard />
-              <div className="w-full flex justify-between">
+              <div className="md:w-660px w-full flex justify-between">
                 <PlayerTag />
                 <Timer />
               </div>
