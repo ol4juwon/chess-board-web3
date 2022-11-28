@@ -28,8 +28,6 @@
     "web3": "^1.7.4"
   },
   "devDependencies": {
-    "@iconify/icons-noto": "^1.2.7",
-    "@iconify/react": "^4.0.0",
     "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.26",
     "autoprefixer": "^10.4.13",
