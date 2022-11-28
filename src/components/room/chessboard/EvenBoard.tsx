@@ -6,7 +6,7 @@ interface Props {
   onClick: ()=> void;
 }
 const EvenBoard: FC<Props> = ({ chessPieces, index, isEven, onClick }: Props) => {
-
+console.log(index);
   return (
     <div 
     onClick={onClick}
