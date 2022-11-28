@@ -1,13 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 interface Props {
   chessPieces: any;
   index: number;
   isEven: boolean;
+  onClick: ()=> void;
 }
-const EvenBoard: FC<Props> = ({ chessPieces, index, isEven }: Props) => {
+const EvenBoard: FC<Props> = ({ chessPieces, index, isEven, onClick }: Props) => {
+
   return (
     <div 
-    onClick={()=> {console.log(index)}}
+    onClick={onClick}
       className={`w-10 h-10 md:w-20 md:h-20 flex flex-row ${
         isEven
           ? (index + 1) % 2 == 0
@@ -25,10 +27,10 @@ const EvenBoard: FC<Props> = ({ chessPieces, index, isEven }: Props) => {
       <div className="w-3/5 h-full flex flex-col items-center justify-end py-2 ">
         <i
           className={`fas fa-chess-${
-            chessPieces[index].icon
+            chessPieces[index].piece?.icon
           } text-xl md:text-5xl 
        ${
-         chessPieces[index].color == "white"
+         chessPieces[index].piece?.color == "white"
            ? " text-colors-white "
            : " text-colors-black"
        }  `}
