@@ -14,23 +14,25 @@ interface Props {
   children(_: ChessProviderProps): ReactNode;
 }
 const ChessProvider = ({ children }: Props) => {
+    const pawn = { hasFirstStep: true, icon: 'pawn', color: 'black',}
+    const rook = {icon: 'rook', color:'black'}
   const map = [
-    { piece: { color: "black", icon: "rook" } },
+    { piece: rook },
     { piece: { color: "black", icon: "knight" } },
     { piece: { color: "black", icon: "bishop" } },
     { piece: { color: "black", icon: "king" } },
     { piece: { color: "black", icon: "queen" } },
-    { piece: { color: "black", icon: " bishop" } },
+    { piece: { color: "black", icon: "bishop" } },
     { piece: { color: "black", icon: "knight" } },
-    { piece: { color: "black", icon: "rook" }, num: "8" },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" } },
-    { piece: { color: "black", icon: "pawn" }, num: "7" },
+    { piece: rook, num: "8" },
+    { piece: pawn },
+    { piece: pawn },
+    { piece: pawn },
+    { piece: pawn },
+    { piece: pawn},
+    { piece: pawn },
+    { piece: pawn},
+    { piece: pawn, num: "7" },
     { piece: {} },
     { piece: {} },
     { piece: {} },
@@ -76,7 +78,7 @@ const ChessProvider = ({ children }: Props) => {
     { piece: { color: "white", icon: "bishop" }, let: "c" },
     { piece: { color: "white", icon: "king" }, let: "d" },
     { piece: { color: "white", icon: "queen" }, let: "e" },
-    { piece: { color: "white", icon: "queen" }, let: "f" },
+    { piece: { color: "white", icon: "bishop" }, let: "f" },
     { piece: { color: "white", icon: "knight" }, let: "g" },
     { piece: { color: "white", icon: "rook" }, let: "h", num: "1" },
   ];
@@ -84,13 +86,36 @@ const ChessProvider = ({ children }: Props) => {
   const [pieceOne, setPieceOne] = useState<any>();
   const [pieceTwo, setPieceTwo] = useState<any>();
   const swapPieces = (p1: number, p2: number) => {
-    console.log("swapping");
-    console.log(chessPieces[p1], chessPieces[p2]);
-    [chessPieces[p1].piece, chessPieces[p2].piece] = [
-      chessPieces[p2].piece,
-      chessPieces[p1].piece,
-    ];
-    setChessPieces(chessPieces);
+    if (chessPieces[p1].piece.icon == "pawn") {
+       if(chessPieces[p1].piece.color == "white"){
+        console.log("swapping white");
+        console.log(chessPieces[p1], chessPieces[p2], p2 - p1);
+        if (Math.abs(p2 - p1) == 8 || Math.abs(p2 - p1) == 16) {
+         console.log("cehcking",chessPieces[p1 - 8].piece.icon);
+          if (!chessPieces[p1 - 8].piece.icon) {
+            [chessPieces[p1].piece, chessPieces[p2].piece] = [
+              chessPieces[p2].piece,
+              chessPieces[p1].piece,
+            ];
+            setChessPieces(chessPieces);
+          }
+        }
+       }else if(chessPieces[p1].piece.color == "black"){
+        console.log("swapping black");
+        console.log(chessPieces[p1], chessPieces[p2], p2 - p1);
+        if (p2 - p1 == 8 || p2 - p1 == 16) {
+         console.log("cehcking",chessPieces[p1 + 8].piece.icon);
+          if (!chessPieces[p1 + 8].piece.icon) {
+            [chessPieces[p1].piece, chessPieces[p2].piece] = [
+              chessPieces[p2].piece,
+              chessPieces[p1].piece,
+            ];
+            setChessPieces(chessPieces);
+          }
+        }
+       }
+
+    }
     setPieceOne(null);
     setPieceTwo(null);
     console.log(chessPieces[p1], chessPieces[p2]);

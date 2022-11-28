@@ -10,7 +10,7 @@ const EvenBoard: FC<Props> = ({ chessPieces, index, isEven, onClick }: Props) =>
   return (
     <div 
     onClick={onClick}
-      className={`w-10 h-10 md:w-20 md:h-20 flex flex-row ${
+      className={`w-10 h-10 md:w-20 md:h-20 flex flex-row hover:bg-colors-amber-400 ${
         isEven
           ? (index + 1) % 2 == 0
             ? " bg-off-bron text-text-bron"
