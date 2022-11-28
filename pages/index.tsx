@@ -24,10 +24,11 @@ useEffect(()=> {
     }
     console.log(ethereum);
     try {
-       dispatch(setUser({address: 'eee3ee3', balance: 4}));
-        router.push("/game");
       ethereum.enable().then(async (rs: string[]) => {
         let balance = await web3.eth.getBalance(rs[0]);
+        dispatch(setUser({address: rs[0], balance}));
+        router.push("/game");
+
        
       });
     } catch (error) {
