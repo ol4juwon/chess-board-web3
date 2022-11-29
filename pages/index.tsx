@@ -5,36 +5,14 @@ import styles from "../src/styles/Home.module.css";
 import SignInButton from "../src/components/SignInButton/SignInButton";
 import { useDispatch } from "react-redux";
 import Script from "next/script";
-import { setUser } from "../src/redux/reducers/authReducers";
-import { useEffect } from "react";
-var Web3 = require("web3");
-var web3 = new Web3(
-  Web3.givenProvider || "ws://some.local-or-remote.node:8546"
-);
+import { useEffect, useState } from "react";
+
 export default function Home() {
-  const dispatch = useDispatch();
-  const router = useRouter();
+
 useEffect(()=> {
   localStorage.clear();
 })
-  const isWalletConnected = async () => {
-    const { ethereum } = window;
-    if (!ethereum) {
-      alert('Please connect to metamask')
-    }
-    console.log(ethereum);
-    try {
-      ethereum.enable().then(async (rs: string[]) => {
-        let balance = await web3.eth.getBalance(rs[0]);
-        dispatch(setUser({address: rs[0], balance}));
-        router.push("/game");
 
-       
-      });
-    } catch (error) {
-      console.log("lk", error);
-    }
-  };
   const signInOptions = [
     {
       name: "Metamask",
@@ -76,11 +54,11 @@ useEffect(()=> {
               return (
                 <SignInButton
                   key={opts.name}
+
                   title={opts.title}
                   name={opts.name}
                   icon={opts.icon}
                   bg={opts.bg}
-                  onClick={isWalletConnected}
                 />
               );
             })}

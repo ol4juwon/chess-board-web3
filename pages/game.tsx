@@ -11,22 +11,24 @@ import CreateGameModal from "../src/components/game/CreateGameModal";
 import { RootState } from "../src/redux/rootReducer";
 import { addGame } from "../src/redux/reducers/games/gamesByIdSlice";
 import { addGameId } from "../src/redux/reducers/games/allGamesSlice";
-// type AddGameType = {
-//   currency: string;
-//   entryFee: number;
-//   privacy: string;
-// };
+import { LineWave } from 'react-loader-spinner';
+
 const Game = () => {
   const game = useSelector((state:RootState) => state.game);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const user = useSelector((state:RootState) => state.user);
   useEffect(() => {
+    setIsLoading(true)
     if (user.address === '' || !user.address) {
 
         
       router.push('/');
+      setIsLoading(false);
     }
-  } );
+
+    setTimeout(()=>     setIsLoading(false), 2000)
+  },[] );
   
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
@@ -67,7 +69,7 @@ const Game = () => {
   return (
     <div>
       <Head>
-        <title>Chess</title>
+        <title>Chess: Games</title>
         <meta name="description" content="Chess app" />
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -80,7 +82,23 @@ const Game = () => {
       </Head>
       <main className={`${show ? "blur-sm" : ""} w-full md:w-full px-4 md:px-20 mx-auto`}>
         <Navbar />
-        <section className={'w-full md:w-full '}>
+        {isLoading ? <div className="w-full flex h-1/3 justify-center items-center">
+          <LineWave
+                wrapperStyle={{
+                  height: '100',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifySelf: 'top'
+                }}
+                wrapperClass="linewave"
+                visible={true}
+                firstLineColor="blue"
+                middleLineColor="white"
+                lastLineColor="cyan"
+              />
+        </div> :
+        (
+          <section className={'w-full md:w-full '}>
         <div className="w-full flex mx-auto justify-end  sm:mx-auto ">
           <DateButton />
           <CreateRoom show={show} setShow={setShow} />
@@ -119,6 +137,9 @@ const Game = () => {
           </div>
         </div>
         </section>
+        )
+        }
+        
         
       </main>
       {show && (
