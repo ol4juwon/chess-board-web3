@@ -1,4 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
+import { Pawn } from "./icons";
+
 import {
   BishopOperation,
   KingOperation,
@@ -22,7 +24,7 @@ interface Props {
   children(_: ChessProviderProps): ReactNode;
 }
 const ChessProvider = ({ children }: Props) => {
-  const pawn = { hasFirstStep: false, icon: "pawn", color: "black" };
+  const pawn = { hasFirstStep: false, icon: "pawn",color: "black" };
   const rook = { icon: "rook", color: "black" };
   const bishop = { icon: "bishop", color: "black" };
   const knight = { icon: "knight", color: "black" };

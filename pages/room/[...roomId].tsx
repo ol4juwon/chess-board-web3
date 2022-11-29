@@ -37,7 +37,7 @@ const Room: FC = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <main className={"h-screen md:h-auto w-full lg:w-full bg-colors-black"}>
+      <main className={"h-screen md:h-screen w-screen lg:w-full bg-colors-black"}>
         <section className="h-full w-screen md:px-20 px-4 flex flex-col justify-start items-center">
           <Navbar locaction="room" />
 
@@ -54,14 +54,14 @@ const Room: FC = () => {
                 </div>
               )}
               {/* <div className="w-auto flex flex-row justify-center max-w-7xl"> */}
-              <div className="md:w-660px w-full flex justify-between">
+              <div className="md:w-660px w-340px flex justify-between">
                 <PlayerTag />
                 <Timer />
               </div>
               {/* </div>  */}
 
               <Chessboard />
-              <div className="md:w-660px w-full flex justify-between">
+              <div className="md:w-660px w-340px flex justify-between">
                 <PlayerTag />
                 <Timer />
               </div>

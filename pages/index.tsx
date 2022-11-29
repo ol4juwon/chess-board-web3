@@ -63,7 +63,7 @@ useEffect(()=> {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className=' w-11/12 mx-auto'>
+      <main className='w-full lg:w-11/12 mx-auto'>
         <Navbar locaction="index" />
         <section className={styles.container}>
           <h1 className={styles.heading}>Welcome to Chess Games</h1>

@@ -1,5 +1,21 @@
 import { SetStateAction } from "react";
-
+import { Bishop, King, Knight, Pawn, Queen, Rook } from "./icons";
+export const getIcons = (icon: string, color: string) => {
+  switch (icon) {
+    case "pawn":
+      return <Pawn color={color} />;
+    case "rook":
+      return <Rook color={color} />;
+    case "bishop":
+      return <Bishop color={color} />;
+    case "knight":
+      return <Knight color={color} />;
+    case "king":
+      return <King color={color} />;
+    case "queen":
+      return <Queen color={color} />;
+  }
+};
 export const PawnOperation = (
   chessPieces: any[],
   p1: number,
@@ -8,7 +24,7 @@ export const PawnOperation = (
 ) => {
   const pick1 = chessPieces[p1];
   const pick2 = chessPieces[p2];
-//   console.log(p2 - p1, pick1, pick2, "eee");
+  //   console.log(p2 - p1, pick1, pick2, "eee");
   if (pick1.piece?.icon == "pawn" && !pick2.piece.icon) {
     if (pick1.piece?.color == "white") {
       if (pick1.piece?.hasFirstStep) {

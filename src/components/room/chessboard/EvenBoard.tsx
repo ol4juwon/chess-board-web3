@@ -1,4 +1,6 @@
 import React, { FC, useEffect } from "react";
+import { Pawn } from "./icons";
+import { getIcons } from "./utils";
 interface Props {
   chessPieces: any;
   index: number;
@@ -6,7 +8,8 @@ interface Props {
   onClick: ()=> void;
 }
 const EvenBoard: FC<Props> = ({ chessPieces, index, isEven, onClick }: Props) => {
-console.log(index);
+const piece = chessPieces[index].piece
+const Elem = piece.icon;
   return (
     <div 
     onClick={onClick}
@@ -25,16 +28,7 @@ console.log(index);
         {chessPieces[index].let}
       </div>
       <div className="w-3/5 h-full flex flex-col items-center justify-end py-2 ">
-        <i
-          className={`fas fa-chess-${
-            chessPieces[index].piece?.icon
-          } text-xl md:text-5xl 
-       ${
-         chessPieces[index].piece?.color == "white"
-           ? " text-colors-white "
-           : " text-colors-black"
-       }  `}
-        ></i>
+{getIcons(Elem, piece.color)}
       </div>
       <div
         className={`w-1/5 text-xs md:text-md 

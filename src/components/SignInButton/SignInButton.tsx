@@ -19,7 +19,7 @@ const SignInButton: FC<SignInProps> = ({
     <div
       onClick={onClick}
       className={
-        "w-320 text-sm md:text-md flex flex-row md:px-10 md:py-2 rounded-full items-center justify-center md:justify-start my-5 md:w-400px mx-auto"
+        "w-300px text-sm md:text-md flex flex-row md:px-10 md:py-2 rounded-full items-center justify-center md:justify-start my-5 md:w-400px mx-auto"
       }
       style={{
         backgroundColor: bg ? "#438FFE" : "transparent",
@@ -29,13 +29,13 @@ const SignInButton: FC<SignInProps> = ({
       <div className="w-1/4 py-2 ">
         <Metamask />
       </div>
-      <div className="py-2 w-3/4">
+      <div className="py-2 w-4/5">
         <p
           className="text-center mx-auto"
           style={{ color: bg ? "white" : "black" }}
         >
           {title}
-        </p>{" "}
+        </p>
       </div>
     </div>
   );
