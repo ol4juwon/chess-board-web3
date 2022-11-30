@@ -21,9 +21,6 @@ interface SignInProps {
   bg?: string;
 }
 const providerOptions = {
-  metamask: {
-    pacakge: 'Metamask',
-  },
   "custom-walletlink": {
     display: {
       logo: "https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0",
