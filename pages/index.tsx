@@ -3,12 +3,17 @@ import { useRouter } from "next/router";
 import Navbar from "../src/components/Navbar/Navbar";
 import styles from "../src/styles/Home.module.css";
 import SignInButton from "../src/components/SignInButton/SignInButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { RootState } from "../src/redux/rootReducer";
+import { resetUser } from "../src/redux/reducers/authReducers";
 
 export default function Home() {
-
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [walletConnected, setWalletConnected] = useState(false);
+const user = useSelector((state: RootState) => state.user);
 useEffect(()=> {
   localStorage.clear();
 })
@@ -33,6 +38,11 @@ useEffect(()=> {
       },
     },
   ];
+
+
+  useEffect(()=> {
+    dispatch(resetUser());
+  },[])
   return (
     <div>
       <Head>
@@ -54,7 +64,8 @@ useEffect(()=> {
               return (
                 <SignInButton
                   key={opts.name}
-
+                  walletConnected={walletConnected}
+                  setWalletConnected={setWalletConnected}
                   title={opts.title}
                   name={opts.name}
                   icon={opts.icon}

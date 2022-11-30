@@ -3,14 +3,16 @@ import { User } from "../types";
 
 const initialState: User = {
  address: '',
- balance: 0
+ balance: -1
 };
 
 const authStateSlice = createSlice({
   name: "auth state",
   initialState,
   reducers: {
-    resetUser(){
+    resetUser(state){
+      state = initialState;
+      return state;
     },
     setUser(state, action: PayloadAction<any>) {
       const user = action.payload;

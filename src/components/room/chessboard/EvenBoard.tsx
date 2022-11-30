@@ -12,6 +12,7 @@ const piece = chessPieces[index].piece
 const Elem = piece.icon;
   return (
     <div 
+    key={index}
     onClick={onClick}
       className={`w-10 h-10 md:w-20 md:h-20 flex flex-row hover:bg-colors-amber-400 ${
         isEven
@@ -22,7 +23,6 @@ const Elem = piece.icon;
           ? " bg-text-bron text-off-bron"
           : "bg-off-bron text-text-bron"
       } `}
-      key={index}
     >
       <div className="w-1/5 flex flex-col justify-end px-1">
         {chessPieces[index].let}

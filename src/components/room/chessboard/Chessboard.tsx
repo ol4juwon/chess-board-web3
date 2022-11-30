@@ -16,6 +16,7 @@ const Chessboard = () => {
               if (index >= 0 && index <= 7)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={false}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -25,6 +26,7 @@ const Chessboard = () => {
               if (index >= 8 && index <= 15)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={true}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -34,6 +36,7 @@ const Chessboard = () => {
               if (index >= 16 && index <= 23)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={false}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -43,6 +46,7 @@ const Chessboard = () => {
               if (index >= 24 && index <= 31)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={true}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -52,6 +56,7 @@ const Chessboard = () => {
               if (index >= 32 && index <= 39)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={false}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -61,6 +66,7 @@ const Chessboard = () => {
               if (index >= 40 && index <= 47)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={true}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -70,6 +76,7 @@ const Chessboard = () => {
               if (index >= 48 && index <= 55)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={false}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}
@@ -79,6 +86,7 @@ const Chessboard = () => {
               if (index >= 56 && index <= 63)
                 return (
                   <EvenBoard
+                  key={index}
                     isEven={true}
                     onClick={() => addIndex(index)}
                     chessPieces={chessPieces}

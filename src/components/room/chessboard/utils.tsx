@@ -105,8 +105,32 @@ export const RookOperation = () => {
 export const BishopOperation = () => {
   console.log("bishop ops");
 };
-export const KnightOperation = () => {
-  console.log("knight ops");
+export const KnightOperation = (
+  chessPieces: any[],
+  p1: number,
+  p2: number,
+  setChessPieces: SetStateAction<any>
+) => {
+  console.log("Knight", p1, p2, p1 - p2);
+  const pick1 = chessPieces[p1];
+  const pick2 = chessPieces[p2];
+  switch (Math.abs(p1 - p2)) {
+    case 6:
+    case 10:
+    case 15:
+    case 17:
+
+      if (0 <= p2 && p2 <= 64) {
+        if(!pick2.piece)
+       [[pick1.piece], [pick2.piece]] = [[pick2.piece], [pick1.piece]]
+
+       if(pick2.piece){
+        [[pick1.piece], [pick2.piece]] = [[pick2.piece], [pick1.piece]]
+        pick2.piece
+       }
+      }
+      break;
+  }
 };
 export const QueenOperation = () => {
   console.log("queen ops");

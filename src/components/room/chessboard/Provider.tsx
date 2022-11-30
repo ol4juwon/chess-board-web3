@@ -24,7 +24,7 @@ interface Props {
   children(_: ChessProviderProps): ReactNode;
 }
 const ChessProvider = ({ children }: Props) => {
-  const pawn = { hasFirstStep: false, icon: "pawn",color: "black" };
+  const pawn = { hasFirstStep: false, icon: "pawn", color: "black" };
   const rook = { icon: "rook", color: "black" };
   const bishop = { icon: "bishop", color: "black" };
   const knight = { icon: "knight", color: "black" };
@@ -37,14 +37,14 @@ const ChessProvider = ({ children }: Props) => {
   const king_w = { icon: "king", color: "white" };
   const queen_w = { icon: "queen", color: "white" };
   const map = [
-    { piece: rook },
+    { piece: { hasFirstStep: false, icon: "rook", color: "black" } },
     { piece: knight },
     { piece: bishop },
-    { piece: king },
+    { piece: { hasFirstStep: false, icon: "king", color: "black" } },
     { piece: queen },
     { piece: bishop },
     { piece: knight },
-    { piece: rook, num: "8" },
+    { piece: { hasFirstStep: false, icon: "rook", color: "black" }, num: "8" },
     { piece: { hasFirstStep: false, icon: "pawn", color: "black" } },
     { piece: { hasFirstStep: false, icon: "pawn", color: "black" } },
     { piece: { hasFirstStep: false, icon: "pawn", color: "black" } },
@@ -96,7 +96,7 @@ const ChessProvider = ({ children }: Props) => {
     { piece: rook_w, let: "a" },
     { piece: knight_w, let: "b" },
     { piece: bishop_w, let: "c" },
-    { piece: king_w, let: "d" },
+    { piece: { hasFirstStep: false, icon: "king", color: "white" }, let: "d" },
     { piece: queen_w, let: "e" },
     { piece: bishop_w, let: "f" },
     { piece: knight_w, let: "g" },
@@ -110,13 +110,13 @@ const ChessProvider = ({ children }: Props) => {
     const pick2 = chessPieces[p2];
     switch (pick1.piece.icon) {
       case "pawn":
-        PawnOperation(chessPieces, p1, p2,setChessPieces);
+        PawnOperation(chessPieces, p1, p2, setChessPieces);
         break;
       case "rook":
         RookOperation();
         break;
       case "knight":
-        KnightOperation();
+        KnightOperation(chessPieces, p1,p2, setChessPieces);
         break;
       case "bishop":
         BishopOperation();

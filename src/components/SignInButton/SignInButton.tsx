@@ -1,56 +1,110 @@
 import { useRouter } from "next/router";
-import React, { FC, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { FC, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/reducers/authReducers";
 import { Metamask } from "./Icons";
-import { LineWave } from "react-loader-spinner";
+import { providers, Contract } from "ethers";
+import WalletLink from "walletlink";
 
+import { LineWave } from "react-loader-spinner";
+import Web3Modal from "web3modal";
 var Web3 = require("web3");
 var web3 = new Web3(
   Web3.givenProvider || "ws://some.local-or-remote.node:8546"
 );
 interface SignInProps {
+  walletConnected: boolean;
+  setWalletConnected: any;
   name: string;
   icon: any;
   title: string;
   bg?: string;
 }
-
+const providerOptions = {
+  "custom-walletlink": {
+    display: {
+      logo: "https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0",
+      name: "Coinbase",
+      description: "Connect to Coinbase Wallet (not Coinbase App)",
+    },
+    options: {
+      appName: "Coinbase", // Your app name
+      networkUrl: `https://mainnet.infura.io/v3/`,
+      chainId: 1,
+    },
+    package: WalletLink,
+    connector: async (_: any, options: any) => {
+      const { appName, networkUrl, chainId } = options;
+      const walletLink = new WalletLink({
+        appName,
+      });
+      const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
+      await provider.enable();
+      return provider;
+    },
+  },
+};
+let web3Modal: Web3Modal;
+if (typeof window !== "undefined") {
+  web3Modal = new Web3Modal({
+    network: "mainnet", // optional
+    cacheProvider: true,
+    providerOptions, // required
+  });
+}
 const SignInButton: FC<SignInProps> = ({
-  name,
-  icon,
+  walletConnected,
+  setWalletConnected,
   title,
   bg,
 }: SignInProps) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
-  const isWalletConnected = async () => {
-    setIsLoading(true);
-    const { ethereum } = window;
-    if (!ethereum) {
-      alert("Please connect to metamask");
-      setIsLoading(false);
-      return;
+
+  useEffect(() => {
+    if (!walletConnected) {
+      connectWallet();
     }
-    console.log(ethereum);
+  }, [walletConnected]);
+
+  const getProviderOrSigner = async (needSigner = false) => {
+    const provider = await web3Modal.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+
+    // If user is not connected to the Rinkeby network, let them know and throw an error
+    const x = await web3Provider.getNetwork();
+    console.log("chain ids", x, provider.state);
+    if (x.chainId !== 5) {
+      window.alert("Change the network to Rinkeby");
+      throw new Error("Change network to Rinkeby");
+    }
+    const signer = web3Provider.getSigner();
+    return { web3Provider, signer };
+  };
+
+  const connectWallet = async () => {
     try {
-      ethereum.enable().then(async (rs: string[]) => {
-        let balance = await web3.eth.getBalance(rs[0]);
-        dispatch(setUser({ address: rs[0], balance }));
-        router.push("/game");
-        setTimeout(() => setIsLoading(false), 2000);
-      });
-    } catch (error) {
-      console.log("lk", error);
+      // setIsLoading(true)
+      await getProviderOrSigner();
+      const { signer } = await getProviderOrSigner(true);
+      const bal = (await signer.getBalance()).toString();
+      const account = await signer.getAddress();
+      dispatch(setUser({ address: account, balance: bal }));
+
+      setWalletConnected(true);
+      setIsLoading(false);
+      router.push("/game");
+    } catch (err) {
+      setIsLoading(false)
+      console.error(err);
     }
   };
+
   return (
     <div
       onClick={
-        isLoading
-          ? () => alert("Wait while we connect you!")
-          : isWalletConnected
+        isLoading ? () => alert("Wait while we connect you!") : connectWallet
       }
       className={
         "w-300px text-sm md:text-md flex flex-row md:px-10 md:py-2 rounded-full items-center justify-center md:justify-start my-5 md:w-400px mx-auto"
@@ -68,11 +122,11 @@ const SignInButton: FC<SignInProps> = ({
               height: "10px",
               display: "flex",
               alignItems: "center",
-              justifyContent: 'center',
+              justifyContent: "center",
               justifySelf: "top",
-              borderWidth: '2',
-              borderColor: 'red',
-              borderStyle: 'solid'
+              borderWidth: "2",
+              borderColor: "red",
+              borderStyle: "solid",
             }}
             wrapperClass="linewave"
             visible={true}
