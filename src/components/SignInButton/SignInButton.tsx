@@ -21,14 +21,17 @@ interface SignInProps {
   bg?: string;
 }
 const providerOptions = {
+  metamask: {
+    pacakge: 'Metamask',
+  },
   "custom-walletlink": {
     display: {
       logo: "https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0",
-      name: "Coinbase",
+      name: "metamask",
       description: "Connect to Coinbase Wallet (not Coinbase App)",
     },
     options: {
-      appName: "Coinbase", // Your app name
+      appName: "Metamask", // Your app name
       networkUrl: `https://mainnet.infura.io/v3/`,
       chainId: 1,
     },

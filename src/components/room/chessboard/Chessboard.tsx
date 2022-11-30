@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import EvenBoard from "./EvenBoard";
 import ChessProvider from "./Provider";
-const Chessboard = () => {
+const Chessboard = ({spectating}) => {
   const [swap, setSwap] = useState({ startPiece: "", endPiece: "" });
-
   return (
     <ChessProvider>
       {({
@@ -18,7 +17,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={false}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -28,7 +27,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={true}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -38,7 +37,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={false}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -48,7 +47,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={true}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -58,7 +57,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={false}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -68,7 +67,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={true}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -78,7 +77,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={false}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />
@@ -88,7 +87,7 @@ const Chessboard = () => {
                   <EvenBoard
                   key={index}
                     isEven={true}
-                    onClick={() => addIndex(index)}
+                    onClick={spectating ? () => {} :() => addIndex(index)}
                     chessPieces={chessPieces}
                     index={index}
                   />

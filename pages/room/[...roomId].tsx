@@ -60,7 +60,7 @@ const Room: FC = () => {
               </div>
               {/* </div>  */}
 
-              <Chessboard />
+              <Chessboard spectating={spectating} />
               <div className="md:w-660px w-340px flex justify-between">
                 <PlayerTag />
                 <Timer />
