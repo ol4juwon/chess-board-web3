@@ -35,7 +35,7 @@ const Navbar: FC<Props> = ({ locaction }: Props) => {
      
       {
         !isIndex &&  (<div className={styles.account}>
-        <div className={styles.balance}> {user?.balance.toString().substring(0,3)  } ETH</div>
+        <div className={styles.balance}> {user?.balance.toString().substring(0,5)  } ETH</div>
         <div
           className={`w-1/2 ${
             locaction ? "bg-primary-grey text-colors-white" : "bg-colors-white"

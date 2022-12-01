@@ -233,7 +233,7 @@ export const Knight = (props: any) => {
         height="209"
         viewBox="0 0 187 209"
         fill="none"
-        class="lg:w-10"
+        class="lg:w-11"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -282,7 +282,7 @@ export const King = (props: any) => {
         height="223"
         viewBox="0 0 143 223"
         fill="none"
-        class="lg:w-10"
+        class="lg:w-9"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

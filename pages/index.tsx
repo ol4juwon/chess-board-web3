@@ -28,15 +28,15 @@ useEffect(()=> {
         console.log("metamask");
       },
     },
-    {
-      name: "Coinbase wallet",
-      title: "Sign in with Coinbase wallet",
-      icon: "/metamask_fox.svg",
-      bg: "",
-      onClick: () => {
-        console.log("coinbase");
-      },
-    },
+    // {
+    //   name: "Coinbase wallet",
+    //   title: "Sign in with Coinbase wallet",
+    //   icon: "/metamask_fox.svg",
+    //   bg: "",
+    //   onClick: () => {
+    //     console.log("coinbase");
+    //   },
+    // },
   ];
 
 

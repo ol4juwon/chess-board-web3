@@ -3,11 +3,12 @@ import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/reducers/authReducers";
 import { Metamask } from "./Icons";
-import { providers, Contract } from "ethers";
+import { providers, Contract, BigNumber, ethers } from "ethers";
 import WalletLink from "walletlink";
 
 import { LineWave } from "react-loader-spinner";
 import Web3Modal from "web3modal";
+
 var Web3 = require("web3");
 var web3 = new Web3(
   Web3.givenProvider || "ws://some.local-or-remote.node:8546"
@@ -88,9 +89,13 @@ const SignInButton: FC<SignInProps> = ({
       // setIsLoading(true)
       await getProviderOrSigner();
       const { signer } = await getProviderOrSigner(true);
+      // BigNumber.({DECIMAL_PLACES: 5})
+      const u = await signer.getBalance();
       const bal = (await signer.getBalance()).toString();
       const account = await signer.getAddress();
-      dispatch(setUser({ address: account, balance: bal }));
+      const n = ethers.utils.formatEther(u);
+      console.log('bal' , n);
+      dispatch(setUser({ address: account, balance: n }));
 
       setWalletConnected(true);
       setIsLoading(false);
