@@ -12,7 +12,7 @@ const Navbar: FC<Props> = ({ locaction }: Props) => {
   const isIndex = locaction === 'index';
   const isRoom = locaction === 'room';
   return (
-    <div className={styles.nav}>
+    <div className='w-full flex flex-row justify-between px-2.5 py-4 md:px-0 md:py-8 mx-auto my-0 '>
       <Link href='/'>
       <div className="w-auto flex flex-row items-center justify-center">
         <span
@@ -34,12 +34,12 @@ const Navbar: FC<Props> = ({ locaction }: Props) => {
       </Link>
      
       {
-        !isIndex &&  (<div className={styles.account}>
-        <div className={styles.balance}> {user?.balance.toString().substring(0,5)  } ETH</div>
+        !isIndex &&  (<div className='flex'>
+        <div className='w-auto px-4 py-2 whitespace-nowrap flex bg-primary-btn items-center justify-center rounded-l-md text-colors-white'><span className="">{` ${Number(user?.balance).toPrecision(3) } ETH`}</span></div>
         <div
-          className={`w-1/2 ${
+          className={`w-auto ${
             locaction ? "bg-primary-grey text-colors-white" : "bg-colors-white"
-          } rounded-r-md text-center flex items-center justify-center `}
+          } rounded-r-md text-center flex  items-center justify-center p-2 px-4 `}
         >
           {user?.address ? `${user.address.substring(0,6)}` : 'Unk'}
         </div>

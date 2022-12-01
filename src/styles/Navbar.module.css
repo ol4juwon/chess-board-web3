@@ -17,9 +17,13 @@ margin-bottom: 20px;
     display: none;
 }
 .balance{
-width: 50%;
+width: auto;
+/* width: 100%; */
+/* padding-left: 10px;
+padding-right: 10px; */
 height: 100%;
 display: flex;
+/* flex-wrap: wrap; */
 align-items: center;
 justify-content: center;
 border-radius: 10px 0 0 10px;
@@ -27,15 +31,19 @@ color: white;
 background: #438FFE;
 }
 .account{
-    width: 180px;
+    
+    width: 220px;
+    /* width: auto; */
     height: 40px;
     border-radius: 10px;
     display: flex;
 }
 .address{
-    width: 50%;
+    width: auto;
 height: 100%;
 display: flex;
+padding-left: 10px;
+padding-right: 10px;
 align-items: center;
 justify-content: center;
 border-radius: 0 10px 10px 0 ;
@@ -67,11 +75,12 @@ background: white;
     } */
 .account{ 
     /* display: none; */
-    width: 100px;
+    /* width: 100px; */
     height: 40px;
     font-size: 10px;
 }
    .balance, .address{
-padding: 4px;
+padding-left: 10px;
+padding-right: 10px;
     }
 }

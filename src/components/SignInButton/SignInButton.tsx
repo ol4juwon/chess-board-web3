@@ -91,10 +91,8 @@ const SignInButton: FC<SignInProps> = ({
       const { signer } = await getProviderOrSigner(true);
       // BigNumber.({DECIMAL_PLACES: 5})
       const u = await signer.getBalance();
-      const bal = (await signer.getBalance()).toString();
       const account = await signer.getAddress();
       const n = ethers.utils.formatEther(u);
-      console.log('bal' , n);
       dispatch(setUser({ address: account, balance: n }));
 
       setWalletConnected(true);
