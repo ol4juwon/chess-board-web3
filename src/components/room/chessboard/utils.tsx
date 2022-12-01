@@ -4,7 +4,7 @@ import { Bishop, King, Knight, Pawn, Queen, Rook } from "./icons";
 export const getIcons = (icon: string, color: string) => {
   switch (icon) {
     case "pawn":
-      return <Pawn color={color} />;
+      return <Pawn color={color} className="lg:w-40 lg:h-40 bg-primary-btn" />;
     case "rook":
       return <Rook color={color} />;
     case "bishop":

@@ -6,6 +6,7 @@ import Navbar from "../../src/components/Navbar/Navbar";
 import PlayerTag from "../../src/components/room/common/PlayerTag";
 import Timer from "../../src/components/room/common/Timer";
 import styles from "../../src/styles/Room.module.css";
+// import "../../src/styles/Room.css";
 import { withRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../src/redux/rootReducer";
@@ -24,7 +25,7 @@ const Room: FC = () => {
     router.push("/game");
   };
   return (
-    <div>
+    <div className="bg-colors-black">
       <Head>
         <title>Chess</title>
         <meta name="description" content="Chess app" />
@@ -37,7 +38,7 @@ const Room: FC = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <main className={"h-screen md:h-screen w-screen lg:h-full lg:w-full bg-colors-black"}>
+      <main className={"h-screen md:h-screen w-full lg:h-full lg:w-full bg-colors-black"}>
         <section className="h-auto w-screen md:px-20 px-4 flex flex-col justify-start items-center">
           <Navbar locaction="room" />
 

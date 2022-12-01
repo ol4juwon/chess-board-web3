@@ -4,10 +4,12 @@ export const Pawn = (props: any) => {
   return (
     <>
       <SvgIcon
+      
         width="143"
         height="171"
         viewBox="0 0 143 171"
         fill="none"
+        class="lg:w-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -72,6 +74,7 @@ export const Bishop = (props: any) => {
         height="223"
         viewBox="0 0 143 223"
         fill="none"
+        class="lg:w-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -160,6 +163,7 @@ export const Rook = (props:any) => {
         height="164"
         viewBox="0 0 143 164"
         fill="none"
+        class="lg:w-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
@@ -229,6 +233,7 @@ export const Knight = (props: any) => {
         height="209"
         viewBox="0 0 187 209"
         fill="none"
+        class="lg:w-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -277,6 +282,7 @@ export const King = (props: any) => {
         height="223"
         viewBox="0 0 143 223"
         fill="none"
+        class="lg:w-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -365,6 +371,7 @@ export const Queen = (props: any) => {
         height="205"
         viewBox="0 0 143 205"
         fill="none"
+        class="lg:w-10"
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
