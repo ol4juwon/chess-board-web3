@@ -119,7 +119,7 @@ const ChessProvider = ({ children }: Props) => {
         KnightOperation(chessPieces, p1,p2, setChessPieces);
         break;
       case "bishop":
-        BishopOperation();
+        BishopOperation(chessPieces, p1,p2,);
         break;
       case "queen":
         QueenOperation();

@@ -29,7 +29,6 @@ const Game = () => {
 
     setTimeout(()=>     setIsLoading(false), 2000)
   },[] );
-  
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();

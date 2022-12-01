@@ -37,12 +37,12 @@ const Room: FC = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <main className={"h-screen md:h-screen w-screen lg:w-full bg-colors-black"}>
-        <section className="h-full w-screen md:px-20 px-4 flex flex-col justify-start items-center">
+      <main className={"h-screen md:h-screen w-screen lg:h-full lg:w-full bg-colors-black"}>
+        <section className="h-auto w-screen md:px-20 px-4 flex flex-col justify-start items-center">
           <Navbar locaction="room" />
 
           <div className="w-full relative h-full flex-col mx-auto text-colors-white">
-            <div className="w-full md:absolute md:top-6 md:left-4 flex flex-row items-center">
+            <div className="w-full md:relative md:py-4 md:top-6 md:left-4 flex flex-row items-center">
               <i className="fa fa-chevron-left" aria-hidden="true"></i>
               <span onClick={()=> {router.back()}}>go back</span>
             </div>

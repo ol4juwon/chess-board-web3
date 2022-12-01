@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import EvenBoard from "./EvenBoard";
 import ChessProvider from "./Provider";
-const Chessboard = ({spectating}) => {
+interface Props {
+  spectating: boolean;
+}
+const Chessboard : FC<Props> = ({spectating}: Props) => {
   const [swap, setSwap] = useState({ startPiece: "", endPiece: "" });
   return (
     <ChessProvider>
