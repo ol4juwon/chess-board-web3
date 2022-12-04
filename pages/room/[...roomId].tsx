@@ -10,6 +10,7 @@ import styles from "../../src/styles/Room.module.css";
 import { withRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../src/redux/rootReducer";
+import Script from "next/script";
 
 const Room: FC = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const Room: FC = () => {
     router.push("/game");
   };
   return (
-    <div className="bg-colors-black">
+    <div className=" w-full h-full " >
       <Head>
         <title>Chess</title>
         <meta name="description" content="Chess app" />
@@ -37,8 +38,9 @@ const Room: FC = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+
       </Head>
-      <main className={"h-screen md:h-screen w-full lg:h-full lg:w-full bg-colors-black"}>
+      <main className={"h-screen md:h-full w-full lg:h-full lg:w-full bg-colors-black"}>
         <section className="h-auto w-screen md:px-20 px-4 flex flex-col justify-start items-center">
           <Navbar locaction="room" />
 

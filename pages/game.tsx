@@ -18,17 +18,17 @@ const Game = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const user = useSelector((state:RootState) => state.user);
-  useEffect(() => {
-    setIsLoading(true)
-    if (user.address === '' || !user.address) {
+  // useEffect(() => {
+  //   setIsLoading(true)
+  //   if (user.address === '' || !user.address) {
 
         
-      router.push('/');
-      setIsLoading(false);
-    }
+  //     router.push('/');
+  //     setIsLoading(false);
+  //   }
 
-    setTimeout(()=>     setIsLoading(false), 2000)
-  },[] );
+  //   setTimeout(()=>     setIsLoading(false), 2000)
+  // },[] );
   const [available, setAvailable] = useState(true);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();

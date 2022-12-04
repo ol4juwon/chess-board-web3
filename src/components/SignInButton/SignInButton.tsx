@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+// import { useWeb3Modal, Web3Button, Web3Modal } from '@web3modal/react'
 import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/reducers/authReducers";
@@ -8,6 +9,8 @@ import WalletLink from "walletlink";
 
 import { LineWave } from "react-loader-spinner";
 import Web3Modal from "web3modal";
+import useWeb3modal from 'web3modal';
+import web3Button from 'web3modal';
 
 var Web3 = require("web3");
 var web3 = new Web3(

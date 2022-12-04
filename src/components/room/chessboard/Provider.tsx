@@ -110,7 +110,7 @@ const ChessProvider = ({ children }: Props) => {
     const pick2 = chessPieces[p2];
     switch (pick1.piece.icon) {
       case "pawn":
-        PawnOperation(chessPieces, p1, p2, setChessPieces);
+        PawnOperation(chessPieces, p1, p2);
         break;
       case "rook":
         RookOperation();
