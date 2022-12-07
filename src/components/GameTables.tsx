@@ -3,8 +3,8 @@ import React, { FC, useEffect, useState } from "react";
 import LoungeButton from "./game/LoungeButton";
 import {useSelector } from 'react-redux';
 import EmptyState from "./game/EmptyState";
-import { RootState } from "../redux/rootReducer";
 import { Games } from "../redux/types";
+import { RootState } from "../redux/store";
 
 
 interface Props {
@@ -77,7 +77,7 @@ const GameTables: FC<Props> = ({ goto, available }: Props) => {
                   <div>{game.limit}</div>
                   <div>
                     {game.entryFee
-                      ? `${game.entryFee}${game.currency}`
+                      ? `${game.entryFee} ${game.currency}`
                       : "0.23ETH"}
                   </div>
                   <div>{game.limit}</div>

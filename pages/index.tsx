@@ -6,8 +6,8 @@ import SignInButton from "../src/components/SignInButton/SignInButton";
 import { useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
-import { RootState } from "../src/redux/rootReducer";
 import { resetUser } from "../src/redux/reducers/authReducers";
+import { RootState } from "../src/redux/store";
 
 export default function Home() {
   const router = useRouter();

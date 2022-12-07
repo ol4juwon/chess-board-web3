@@ -9,8 +9,8 @@ import styles from "../../src/styles/Room.module.css";
 // import "../../src/styles/Room.css";
 import { withRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { RootState } from "../../src/redux/rootReducer";
 import Script from "next/script";
+import { RootState } from "../../src/redux/store";
 
 const Room: FC = () => {
   const router = useRouter();

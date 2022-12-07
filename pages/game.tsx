@@ -8,10 +8,10 @@ import Navbar from "../src/components/Navbar/Navbar";
 import styles from "../src/styles/games.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import CreateGameModal from "../src/components/game/CreateGameModal";
-import { RootState } from "../src/redux/rootReducer";
 import { addGame } from "../src/redux/reducers/games/gamesByIdSlice";
 import { addGameId } from "../src/redux/reducers/games/allGamesSlice";
 import { LineWave } from 'react-loader-spinner';
+import { RootState } from "../src/redux/store";
 
 const Game = () => {
   const game = useSelector((state:RootState) => state.game);
