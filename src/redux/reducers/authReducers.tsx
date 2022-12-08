@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../types";
 
 const initialState: User = {
- address: '',
+ address: "",
  balance: -1
 };
 

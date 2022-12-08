@@ -1,4 +1,5 @@
 import "../src/styles/globals.css";
+// import "../src/styles/styles.css";
 import type { AppProps } from "next/app";
 import { wrapper } from "../src/redux/store";
 import { Fragment } from "react";

@@ -9,8 +9,9 @@ interface Props{
     currency: string;
     setCurrency: any;
     addGames: () => void;
+    getGames: () => void;
 }
-const CreateGameModal : FC<Props> = ({show, setShow, entryFee, setEntryFee, setCurrency,currency, setPrivacy, privacy, addGames}: Props) => {
+const CreateGameModal : FC<Props> = ({show, setShow, entryFee, setEntryFee, setCurrency,currency, setPrivacy, privacy, getGames, addGames}: Props) => {
   return (
     <div
     className={`flex  justify-center  items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-mofa `}
@@ -63,7 +64,9 @@ const CreateGameModal : FC<Props> = ({show, setShow, entryFee, setEntryFee, setC
           </div>
           <div className="w-full my-3 flex text-xs justify-end">
             <button
-              onClick={() => setShow(!show)}
+              onClick={() => {
+                getGames();
+                setShow(!show)}}
               className="mx-2 w-20 p-2 border-colors-black border-solid border-1 rounded-lg"
             >
               Cancel

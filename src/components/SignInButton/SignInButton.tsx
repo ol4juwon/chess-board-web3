@@ -66,11 +66,11 @@ const SignInButton: FC<SignInProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!walletConnected) {
-      connectWallet();
-    }
-  }, [walletConnected]);
+  // useEffect(() => {
+  //   if (!walletConnected) {
+  //     connectWallet();
+  //   }
+  // }, [walletConnected]);
 
   const getProviderOrSigner = async (needSigner = false) => {
     const provider = await web3Modal.connect();

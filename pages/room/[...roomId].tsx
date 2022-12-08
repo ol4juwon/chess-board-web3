@@ -15,6 +15,7 @@ import { RootState } from "../../src/redux/store";
 const Room: FC = () => {
   const router = useRouter();
   const user = useSelector((state: RootState) => state.user);
+  console.log('=>',user)
   useEffect(() => {
     if (user.address === "" || !user.address) {
       router.push("/");
@@ -26,7 +27,7 @@ const Room: FC = () => {
     router.push("/game");
   };
   return (
-    <div className=" w-full h-full " >
+    <div className="h-full bg-colors-black" >
       <Head>
         <title>Chess</title>
         <meta name="description" content="Chess app" />
@@ -38,9 +39,8 @@ const Room: FC = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-
       </Head>
-      <main className={"h-screen md:h-full w-full lg:h-full lg:w-full bg-colors-black"}>
+      <main className={"h-screen game-page md:h-full w-full lg:h-full lg:w-full"}>
         <section className="h-auto w-screen md:px-20 px-4 flex flex-col justify-start items-center">
           <Navbar locaction="room" />
 
@@ -66,7 +66,7 @@ const Room: FC = () => {
               <Chessboard spectating={spectating} />
               <div className="md:w-660px w-340px flex justify-between">
                 <PlayerTag />
-                <Timer />
+                {/* <Timer /> */}
               </div>
             </div>
           </div>

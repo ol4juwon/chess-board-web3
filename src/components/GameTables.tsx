@@ -18,13 +18,15 @@ const GameTables: FC<Props> = ({ goto, available }: Props) => {
   const [availGames, setAvailGames] = useState<Games[]>();
   const [endedGames, setEndedGames] = useState<Games[]>();
   useEffect(() => {
+    console.log(Object.entries(gamesId).length)
     if(games && Object.entries(gamesId).length > 0 ){
       const AllGames : Games[] = [];
      Object.entries(gamesId).map((game) => {
-      AllGames.push(games[game[1]]);
+      console.log(game)
+      AllGames.push(games[game[0]]);
      })
 
-
+console.log("Allgames",AllGames)
     const filteredAvail = AllGames.filter((game) => {
       return !game.ended
     })

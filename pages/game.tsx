@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import CreateRoom from "../src/components/game/createButton/CreateRoom";
 import DateButton from "../src/components/game/dateButton/DateButton";
 import GameTables from "../src/components/GameTables";
@@ -12,6 +12,7 @@ import { addGame } from "../src/redux/reducers/games/gamesByIdSlice";
 import { addGameId } from "../src/redux/reducers/games/allGamesSlice";
 import { LineWave } from 'react-loader-spinner';
 import { RootState } from "../src/redux/store";
+import GameProvider from "../src/components/game/prrovider";
 
 const Game = () => {
   const game = useSelector((state:RootState) => state.game);
@@ -78,9 +79,16 @@ const Game = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-      </Head>
-      <main className={`${show ? "blur-sm" : ""} w-full md:w-full px-4 md:px-20 mx-auto`}>
+      </Head>  <GameProvider>
+        {({
+getGames,
+createGame
+      }) => (
+        <>
+      <main className={`main-page ${show ? "blur-sm" : ""} h-screen w-full md:w-full px-4 md:px-20 mx-auto`}>
         <Navbar />
+      
+        <Fragment>
         {isLoading ? <div className="w-full flex h-1/3 justify-center items-center">
           <LineWave
                 wrapperStyle={{
@@ -135,25 +143,36 @@ const Game = () => {
             <GameTables goto={startGame} available={available} />
           </div>
         </div>
+
         </section>
         )
         }
-        
+        </Fragment>
+
+
+  
+
         
       </main>
+   
       {show && (
-        <CreateGameModal
-          show={show}
-          setShow={setShow}
-          addGames={addGames}
-          entryFee={entryFee}
-          setCurrency={setCurrency}
-          currency={currency}
-          setPrivacy={setPrivacy}
-          privacy={privacy}
-          setEntryFee={setEntryFee}
-        />
-      )}
+                      <CreateGameModal
+                        show={show}
+                        getGames={getGames}
+                        setShow={setShow}
+                        addGames={createGame}
+                        entryFee={entryFee}
+                        setCurrency={setCurrency}
+                        currency={currency}
+                        setPrivacy={setPrivacy}
+                        privacy={privacy}
+                        setEntryFee={setEntryFee}
+                      />
+                    )}
+      </>
+    )}
+        
+        </GameProvider>
     </div>
   );
 };

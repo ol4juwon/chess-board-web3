@@ -8,6 +8,7 @@ import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import { resetUser } from "../src/redux/reducers/authReducers";
 import { RootState } from "../src/redux/store";
+import { resetGame } from "../src/redux/reducers/games/allGamesSlice";
 
 export default function Home() {
   const router = useRouter();
@@ -42,16 +43,17 @@ useEffect(()=> {
 
   useEffect(()=> {
     dispatch(resetUser());
+    dispatch(resetGame());
   },[])
   return (
-    <div>
+    <div className="w-screen h-screen">
       <Head>
         <title>Chess</title>
         <meta name="description" content="Chess app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='w-full lg:w-11/12 mx-auto'>
+      <main className='main-page h-screen w-screen lg:w-11/12 mx-auto'>
         <Navbar locaction="index" />
         <section className={styles.container}>
           <h1 className={styles.heading}>Welcome to Chess Games</h1>

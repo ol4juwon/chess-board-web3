@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: local('Gilroy-Regular'), url(../assets/fonts/Gilroy/Gilroy-Light.otf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Gilroy-Bold';
+    src: local('Gilroy-extrabold'), url(../assets/fonts/Gilroy/Gilroy-ExtraBold.otf) format('truetype');
+  }
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+body {
+  padding: 0;
+  color: black;
+  width: 80%;
+  margin: 0;
+  font-family: "Gilroy";
+  background-color: black;
+}
+  .main-page {
+    width: 100vw;
+    /* padding-top: 65px; */
+    background: url("../assets/svg/chess-board.svg") #EBEBEB ;
+border: 2px solid red;
+    background-position: center;
+    background-repeat: repeat;
+    background-size:cover;
+  }
+  .game-page {
+    background-color: black;
+  }
+  @tailwind base;
+@tailwind components;
+@tailwind utilities;
